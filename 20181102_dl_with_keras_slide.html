@@ -30,7 +30,7 @@
           break;
         }
       }
-      document.getElementById("pageMark").innerHTML = n + " / " + lastPage + " �y�[�W";
+      document.getElementById("pageMark").innerHTML = n + " / " + lastPage + " ページ";
     }
     
     function MoveTo(n) {
@@ -147,7 +147,7 @@ hljs.initHighlightingOnLoad();
 <style type="text/css">
 body {
   font-size: 139%;
-  font-family: 'Tahoma','���C���I',sans-serif;
+  font-family: 'Tahoma','メイリオ',sans-serif;
   color: #4d4d4d;
   letter-spacing: 0.06em;
   width: 920px;
@@ -200,10 +200,10 @@ h4 {margin: 0.7em 0 0.4em;}
 <body>
 
 <div style="padding: 0.4em 0.6em 0.1em; font-size: 105%;">
-<a href='javascript:void(0)' onclick='MoveTo(1)'>�ŏ�</a> 
-<a href='javascript:void(0)' onclick='MoveBack()'>�O</a>
-<a href='javascript:void(0)' onclick='MoveNext()'>��</a>
-<a href='javascript:void(0)' onclick='MoveTo(lastPage)'>�Ō�</a>
+<a href='javascript:void(0)' onclick='MoveTo(1)'>最初</a> 
+<a href='javascript:void(0)' onclick='MoveBack()'>前</a>
+<a href='javascript:void(0)' onclick='MoveNext()'>次</a>
+<a href='javascript:void(0)' onclick='MoveTo(lastPage)'>最後</a>
 <span id='pageMark' style="float:right; padding-right: 2px;"></span></div>
 <hr style="border-top: 2px solid #4d4d4d;"/>
 <!--
@@ -216,12 +216,12 @@ h4 {margin: 0.7em 0 0.4em;}
 
 <!-- p1 --->
 <div id='p1' class='slide'>
-  <h1>���� Deep Learning 5�� �P�ꕪ�U�\��<br/>��ǂ�Ŗʔ������Ƃ������������b</h1>
-  <h3>�e�L�X�g</h3>
-  <table  border="0" cellpadding="5"><tr><td valign="top" style="border:0"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873118263/goodpic-22/" target="_top"><img src="https://images-fe.ssl-images-amazon.com/images/I/51W34ZKKlHL._SL160_.jpg" border="0" alt="���� Deep Learning �\Python�~Keras�ŃA�C�f�A���`�ɂ��郌�V�s" /></a></td><td valign="top" style="border:0"><font size="-1"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873118263/goodpic-22/" target="_top">���� Deep Learning �\Python�~Keras�ŃA�C�f�A���`�ɂ��郌�V�s</a><br />Antonio Gulli Sujit Pal ��� ���� <br /><br />�I���C���[�W���p��  2018-08-11<br />����グ�����L���O : 1992<br /><br /><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873118263/goodpic-22/" target="_top">Amazon�ŏڂ�������</a></font><font size="-2"> by <a href="http://www.goodpic.com/mt/aws/index.html" >G-Tools</a></font></td></tr></table>
-  <h3>���̑��̎Q�l����</h3>
+  <h1>直感 Deep Learning 5章 単語分散表現<br/>を読んで面白いことがしたかった話</h1>
+  <h3>テキスト</h3>
+  <table  border="0" cellpadding="5"><tr><td valign="top" style="border:0"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873118263/goodpic-22/" target="_top"><img src="https://images-fe.ssl-images-amazon.com/images/I/51W34ZKKlHL._SL160_.jpg" border="0" alt="直感 Deep Learning ―Python×Kerasでアイデアを形にするレシピ" /></a></td><td valign="top" style="border:0"><font size="-1"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873118263/goodpic-22/" target="_top">直感 Deep Learning ―Python×Kerasでアイデアを形にするレシピ</a><br />Antonio Gulli Sujit Pal 大串 正矢 <br /><br />オライリージャパン  2018-08-11<br />売り上げランキング : 1992<br /><br /><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873118263/goodpic-22/" target="_top">Amazonで詳しく見る</a></font><font size="-2"> by <a href="http://www.goodpic.com/mt/aws/index.html" >G-Tools</a></font></td></tr></table>
+  <h3>その他の参考文献</h3>
   <ol>
-    <li><a href="http://www.cl.ecei.tohoku.ac.jp/~m-suzuki/jawiki_vector/">���{�� Wikipedia �G���e�B�e�B�x�N�g���i���k��w ���E���茤�����j</a></li>
+    <li><a href="http://www.cl.ecei.tohoku.ac.jp/~m-suzuki/jawiki_vector/">日本語 Wikipedia エンティティベクトル（東北大学 乾・岡崎研究室）</a></li>
   </ol>
 </div>
 
@@ -230,25 +230,25 @@ h4 {margin: 0.7em 0 0.4em;}
 
 <!-- p2 --->
 <div id='p2' class='slide'>
-  <h2>�P�ꕪ�U�\���Ƃ́i�P�j</h2>
+  <h2>単語分散表現とは（１）</h2>
   <ul>
-    <li>�j���[�����l�b�g�ɒP��╶�́i���P���j����͂��������Ƃ�����B</li>
-    <center><table style="margin: 0.8em;"><tr><td style="text-align:center">�f��̃��r���[<br/>�̕���</td><td>�@\(\to\)�@</td><td style="border: 1px solid #4d4d4d;" width="100" height="60">�@</td><td>�@\(\to\)�@</td><td style="text-align:center">�l�K�e�B�u���|�W�e�B�u��<br/>�i 0 or 1 �j</td></tr></table></center>
-    <li>�P����j���[�����l�b�g�ɓ���邱�Ƃ͂ł��Ȃ��̂ŁA�e�P��������i�x�N�g���j�ɕϊ��������B</li>
-    <li>�e�P��ɓK���ɔԍ���t����̂�1�̕��@�iEx�D��������o��p�x���ɕ��ׂ� 1, 2, 3, �c �Ƃ���j�����A�P��Ƃ����͈̂Ӗ���������̂Ȃ̂ŁA�������������P��̈Ӗ��𔽉f�����悤�ȕϊ������������悳�����ȋC������B</li>
+    <li>ニューラルネットに単語や文章（＝単語列）を入力したいことがある。</li>
+    <center><table style="margin: 0.8em;"><tr><td style="text-align:center">映画のレビュー<br/>の文章</td><td>　\(\to\)　</td><td style="border: 1px solid #4d4d4d;" width="100" height="60">　</td><td>　\(\to\)　</td><td style="text-align:center">ネガティブかポジティブか<br/>（ 0 or 1 ）</td></tr></table></center>
+    <li>単語をニューラルネットに入れることはできないので、各単語を実数（ベクトル）に変換したい。</li>
+    <li>各単語に適当に番号を付けるのは1つの方法（Ex．辞書順や登場頻度順に並べて 1, 2, 3, … とする）だが、単語というのは意味があるものなので、もう少し何か単語の意味を反映したような変換をした方がよさそうな気がする。</li>
   </ul>
-  �Ȃ̂�<b>�P�ꕪ�U�\��</b>�i�� �P��W��������x�N�g����Ԃւ̎ʑ��ł����āA�P��ǂ����̉��炩�̊֌W���𔽉f�������́j���ق����B
+  なので<b>単語分散表現</b>（＝ 単語集合から実ベクトル空間への写像であって、単語どうしの何らかの関係性を反映したもの）がほしい。
 </div>
 
 
 
 <!-- p3 --->
 <div id='p3' class='slide'>
-  <h3>�P�ꕪ�U�\���̗�</h3>
-  �Q�l���� 1. �Ō��J����Ă���A���{�� Wikipedia �ŋL���ƂȂ��Ă���G���e�B�e�B��100�����\���iSkip-gram �Ŋw�K�j�B
+  <h3>単語分散表現の例</h3>
+  参考文献 1. で公開されている、日本語 Wikipedia で記事となっているエンティティの100次元表現（Skip-gram で学習）。
   <a style="font-size:94%" href="https://github.com/singletongue/WikiEntVec">https://github.com/singletongue/WikiEntVec</a>
     \[
-      f({\large �h�[�i�c}) = \left(
+      f({\large ドーナツ}) = \left(
   \begin{array}{c}
       0.15019251   \\
       0.4490861 \\
@@ -256,7 +256,7 @@ h4 {margin: 0.7em 0 0.4em;}
       -0.5708073
     \end{array}
   \right), \; \; \;
-      f({\large �N�b�L�[}) = \left(
+      f({\large クッキー}) = \left(
   \begin{array}{c}
       -0.04867858   \\
       0.44743043 \\
@@ -266,32 +266,32 @@ h4 {margin: 0.7em 0 0.4em;}
   \right)
     \]
     \[
-      {\rm cos} \bigl(f({\large �h�[�i�c}) , \; f({\large �N�b�L�[}) \bigr) = 0.8620
+      {\rm cos} \bigl(f({\large ドーナツ}) , \; f({\large クッキー}) \bigr) = 0.8620
     \]
     \[
-      {\rm cos} \bigl(f({\large �h�[�i�c}) , \; f({\large ���[����}) \bigr) = 0.6936
+      {\rm cos} \bigl(f({\large ドーナツ}) , \; f({\large ラーメン}) \bigr) = 0.6936
     \]
 <pre><code class="r">from gensim.models import KeyedVectors
 model = KeyedVectors.load_word2vec_format('entity_vectors.txt')
-print(model[u'�h�[�i�c'])
-print(model[u'�N�b�L�['])
-print(model.similarity(u'�h�[�i�c', u'�N�b�L�['))
-print(model.similarity(u'�h�[�i�c', u'���[����'))</code></pre>
+print(model[u'ドーナツ'])
+print(model[u'クッキー'])
+print(model.similarity(u'ドーナツ', u'クッキー'))
+print(model.similarity(u'ドーナツ', u'ラーメン'))</code></pre>
 </div>
 
 
 
 <!-- p4 --->
 <div id='p4' class='slide'>
-  <h2>�P�ꕪ�U�\���Ƃ́i�Q�j</h2>
+  <h2>単語分散表現とは（２）</h2>
   <ul>
-    <li>�Ƃ����Ă��P��ǂ����̉��炩�̊֌W���𔽉f�����\���Ƃ͖��炩�łȂ��B�u�Ӗ����߂��P��̃x�N�g���ǂ����́A���炩�̋������߂��v�悤�ȕ\���ł����Ăق������A�Ӗ����߂��Ƃ͉����Ƃ������ƂɂȂ�B<span style="font-size: 100%; color: teal;">�u�h�[�i�c�v�Ɓu�N�b�L�[�v�͋߂���������Ȃ����A����������K�肷��H</span></li>
-    <li>�����ŒP�ꕪ�U�\���i�̏��Ȃ��Ƃ� Skip-gram, CBOW, GloVe�j�ł́A�R�[�p�X�i���͂̏W���j�𗘗p���A����P��Ƃ���P�ꂪ�u���͒��� N �P��ȓ��̋����ɓo�ꂷ�邩�v�Ƃ����������w�Ԃ̂ɓK�����\���𓾂悤�Ƃ���B</li>
-    <center><table style="margin: 0.8em;"><tr><td style="text-align:center">�R�[�p�X</td><td>�@\(\to\)�@</td><td style="border: 1px solid #4d4d4d;" width="100" height="60">�@</td><td>�@\(\to\)�@</td><td style="text-align:center">�P�ꕪ�U�\�� \(f\)</td></tr></table></center>
+    <li>といっても単語どうしの何らかの関係性を反映した表現とは明らかでない。「意味が近い単語のベクトルどうしは、何らかの距離が近い」ような表現であってほしいが、意味が近いとは何かということになる。<span style="font-size: 100%; color: teal;">「ドーナツ」と「クッキー」は近いかもしれないが、何がそれを規定する？</span></li>
+    <li>そこで単語分散表現（の少なくとも Skip-gram, CBOW, GloVe）では、コーパス（文章の集合）を利用し、ある単語とある単語が「文章中で N 単語以内の距離に登場するか」という特徴を学ぶのに適した表現を得ようとする。</li>
+    <center><table style="margin: 0.8em;"><tr><td style="text-align:center">コーパス</td><td>　\(\to\)　</td><td style="border: 1px solid #4d4d4d;" width="100" height="60">　</td><td>　\(\to\)　</td><td style="text-align:center">単語分散表現 \(f\)</td></tr></table></center>
     <ul>
-      <li>Skip-gram �\ �u����P��ƕʂ̂���P�����͂��āA���͓��ŋ߂��ɓo�ꂷ��y�A���ۂ��o�͂���v���j���[�����l�b�g�Ŋw�K���āA�d�݂����o���i�Ƃ��ꂪ�P�ꕪ�U�\���ɂȂ��Ă���j�B</li>
-      <li>CBOW �\ �u����P��Q����͂��āA�ǂ̒P�ꂪ���̒��S�ɂ��肻�������o�͂���v���j���[�����l�b�g�Ŋw�K���āA�d�݂����o���B</li>
-      <li>GloVe �\ �e�s���P��A�e�񂪒P���i��j�ɂȂ��Ă��Ċe�v�f������炪���N�����񐔁i�����炭�j�ɂȂ��Ă���悤�ȍs���p�ӂ��āA2�̍s��̐ςɕ�������i��1�ڂ̍s�񂪒P�ꕪ�U�\���ɂȂ��Ă���j�B</li>
+      <li>Skip-gram ― 「ある単語と別のある単語を入力して、文章内で近くに登場するペアか否か出力する」をニューラルネットで学習して、重みを取り出す（とそれが単語分散表現になっている）。</li>
+      <li>CBOW ― 「ある単語群を入力して、どの単語がその中心にありそうかを出力する」をニューラルネットで学習して、重みを取り出す。</li>
+      <li>GloVe ― 各行が単語、各列が単語列（謎）になっていて各要素がそれらが共起した回数（おそらく）になっているような行列を用意して、2つの行列の積に分解する（と1つ目の行列が単語分散表現になっている）。</li>
     </ul>
   </ul>
 </div>
@@ -300,17 +300,17 @@ print(model.similarity(u'�h�[�i�c', u'���[����'))</code></pre>
 
 <!-- p5 --->
 <div id='p5' class='slide'>
-  <h2>Skip-gram �ɂ��P�ꕪ�U�\���̍���</h2>
+  <h2>Skip-gram による単語分散表現の作り方</h2>
   <ol>
-    <li>�ȉ��̂悤�ȃj���[�����l�b�g���[�N��g��ŁA�u����P��i���S��j�ɂ��āA���̂���P��i������j�����͒��� N �P��ȓ��̋����ɓo�ꂷ�邩�ۂ��i1 or 0�j�v���w�K����B</li>
+    <li>以下のようなニューラルネットワークを組んで、「ある単語（中心語）について、他のある単語（文脈語）が文章中で N 単語以内の距離に登場するか否か（1 or 0）」を学習する。</li>
     <div style="border: 1px solid #4d4d4d; padding: 0.4em; margin: 0.5em 0 0.7em"><ol start="0">
-      <li>���S��ƕ�����̃y�A����͂���B</li>
-      <li>���S��𒆐S��p�� Embedding �w�Ő��l�x�N�g���ɂ���i���j�B</li>
-      <li>������𕶖���p�� Embedding �w�Ő��l�x�N�g���ɂ���B</li>
-      <li>1. �� 2. �̓��ς��Ƃ�B</li>
-      <li>3. �ɏo�͂̎�������1�� Dense �w�����Ԃ��Asigmoid �Ŋ��������čŏI�I�Ȕ���i1 or 0�j�Ƃ���B</li>
+      <li>中心語と文脈語のペアを入力する。</li>
+      <li>中心語を中心語用の Embedding 層で数値ベクトルにする（★）。</li>
+      <li>文脈語を文脈語用の Embedding 層で数値ベクトルにする。</li>
+      <li>1. と 2. の内積をとる。</li>
+      <li>3. に出力の次元数が1の Dense 層をかぶせ、sigmoid で活性化して最終的な判定（1 or 0）とする。</li>
     </ol></div>
-    <li>�i���j���������P�ꕪ�U�\���ɑ��Ȃ�Ȃ��B</li>
+    <li>（★）が得たい単語分散表現に他ならない。</li>
   </ol>
 </div>
 
@@ -318,8 +318,8 @@ print(model.similarity(u'�h�[�i�c', u'���[����'))</code></pre>
 
 <!-- p6 --->
 <div id='p6' class='slide'>
-  <h3>Keras �ɂ�� Skip-gram ���ʊ�̎�����</h3>
-  �u�P�ꐔ�v�A�u�������ɖ��ߍ��ނ��v�������߂�΃l�b�g���[�N�\�������܂�B
+  <h3>Keras による Skip-gram 識別器の実装例</h3>
+  「単語数」、「何次元に埋め込むか」さえ決めればネットワーク構造が決まる。
 <pre><code class="r"># -*- coding: utf-8 -*-
 import numpy as np
 from keras.layers import Dot, Input, Dense, Reshape, Embedding
@@ -327,22 +327,22 @@ from keras.models import Model
 
 class SkipGramDiscriminator():
     def __init__(self, vocab_size, embed_size):
-        self.vocab_size = vocab_size # ��b��
-        self.embed_size = embed_size # ���ߍ��ݎ�����
+        self.vocab_size = vocab_size # 語彙数
+        self.embed_size = embed_size # 埋め込み次元数
     def create_model(self):
-        # ���S��ID --> ���S�ꐔ�l�x�N�g���\��
+        # 中心語ID --> 中心語数値ベクトル表現
         x0 = Input(shape=(1,))
         y0 = Embedding(self.vocab_size, self.embed_size,
                        embeddings_initializer='glorot_uniform')(x0)
         y0 = Reshape((self.embed_size,))(y0)
         self.word_embedder = Model(x0, y0)
-        # ������ID --> �����ꐔ�l�x�N�g���\��
+        # 文脈語ID --> 文脈語数値ベクトル表現
         x1 = Input(shape=(1,))
         y1 = Embedding(self.vocab_size, self.embed_size,
                        embeddings_initializer='glorot_uniform')(x1)
         y1 = Reshape((self.embed_size,))(y1)
         self.context_embedder = Model(x1, y1)
-        # ���� --> ���W�X�e�B�b�N��A
+        # 内積 --> ロジスティック回帰
         y = Dot(axes=-1)([y0, y1])
         y = Dense(1, kernel_initializer='glorot_uniform', activation='sigmoid')(y)
         self.discriminator = Model(inputs=[x0, x1], outputs=y)
@@ -350,23 +350,23 @@ class SkipGramDiscriminator():
         print(self.discriminator.summary())
     
 if __name__ == '__main__':
-    sg = SkipGramDiscriminator(6, 3) # i,love,green,eggs,and,ham 6���3������Ԃ֖���
+    sg = SkipGramDiscriminator(6, 3) # i,love,green,eggs,and,ham 6語を3次元空間へ埋込
     sg.create_model()
     
-    x0 = np.array([[1], [4], [1], [4], [2]]) # ���S��F love,and,love,and,green
-    x1 = np.array([[0], [5], [2], [2], [2]]) # ������F i,ham,green,green,green
-    y  = np.array([[1], [1], [1], [0], [0]]) # �������x��
-    sg.discriminator.fit([x0, x1], y, epochs=1000) # �w�K
+    x0 = np.array([[1], [4], [1], [4], [2]]) # 中心語： love,and,love,and,green
+    x1 = np.array([[0], [5], [2], [2], [2]]) # 文脈語： i,ham,green,green,green
+    y  = np.array([[1], [1], [1], [0], [0]]) # 正解ラベル
+    sg.discriminator.fit([x0, x1], y, epochs=1000) # 学習
     
     y_pred = sg.discriminator.predict([x0, x1])
-    print(y_pred) # ���S��ƕ�����̃y�A�ł��邩�ǂ����̔��茋��
+    print(y_pred) # 中心語と文脈語のペアであるかどうかの判定結果
 
-    # ���S��̐��l�x�N�g���\���͒��S��� Embedding �w�̏d�݂��̂���
+    # 中心語の数値ベクトル表現は中心語の Embedding 層の重みそのもの
     print(sg.word_embedder.get_weights())
 
-    # ID���琔�l�x�N�g���\�������o���邱�Ƃ̊m�F
-    print(sg.word_embedder.predict([[0]])) # i �̐��l�x�N�g���\��
-    print(sg.word_embedder.predict([[1]])) # love �̐��l�x�N�g���\��</code></pre>
+    # IDから数値ベクトル表現を取り出せることの確認
+    print(sg.word_embedder.predict([[0]])) # i の数値ベクトル表現
+    print(sg.word_embedder.predict([[1]])) # love の数値ベクトル表現</code></pre>
 <pre><code>__________________________________________________________________________________________________
 Layer (type)                    Output Shape         Param #     Connected to
 ==================================================================================================
@@ -413,20 +413,20 @@ Epoch 1000/1000
 
 <!-- p7 --->
 <div id='p7' class='slide'>
-�l�b�g���[�N�͂ł������A���͊w�K�f�[�^�̏����B<br/>
-���{��̃e�L�X�g���w�K���Ă݂������A�e�L�X�g�͌��X�p��̖{�Ȃ̂œ��{��̎�舵���ɂ��ď����Ă��Ȃ��B<br/>
-\(\to\) ���������w�K�f�[�^�����̎菇�͈ȉ�<span style="color: teal;">�i�S�̓I�ɂ悭�킩��Ȃ��j</span>�B<br/>
+ネットワークはできたが、問題は学習データの準備。<br/>
+日本語のテキストを学習してみたいが、テキストは元々英語の本なので日本語の取り扱いについて書いていない。<br/>
+\(\to\) 今回やった学習データ準備の手順は以下<span style="color: teal;">（全体的によくわからない）</span>。<br/>
 <ul>
-  <li>���{��R�[�p�X�̕��͂�1������ MeCab �ŒP�ꖈ�̔��p�󔒋�؂�ɂ���B</li>
-  <li>�����Ȃ�Ƃ����p��Ɠ����Ȃ̂ŁA�e���ɑ΂��ăe�L�X�g���l keras �̊֐��� ID ���ӂ�ASkip-gram �΁i����ɂ��Ă͑S�ĂƁA����͐���Ɠ����T���v�����O�j�𐶐�����i143�y�[�W�j�B</li>
-  <li>�������A���͂��Ƃɕ�����T���v�����O����ƁA���̕��͂Ő���ł���y�A���܂܂�Ă��邩������Ȃ��B�̂ŁA�ォ�畉���S���`�F�b�N���āA����Ɠ����y�A���������珜���i�e�L�X�g��1�������Ȃ��悭�킩��Ȃ��j�B</li>
+  <li>日本語コーパスの文章を1文ずつ MeCab で単語毎の半角空白区切りにする。</li>
+  <li>そうなるともう英語と同じなので、各文に対してテキスト同様 keras の関数で ID をふり、Skip-gram 対（正例については全てと、負例は正例と同数サンプリング）を生成する（143ページ）。</li>
+  <li>ただし、文章ごとに負例をサンプリングすると、他の文章で正例であるペアが含まれているかもしれない。ので、後から負例を全部チェックして、正例と同じペアがあったら除く（テキストは1文しかなくよくわからない）。</li>
 </ul>
-�Ƃɂ������̎菇�ŁA�ȉ��̃h�[�i�c�D����2�l�̃Q�[���L�����N�^�[�̃Z���t�����ꂼ��w�K���āA�h�[�i�c�̊w�K���ʂ��ǂ̂悤�ɂȂ邩���Ă݂����B
+とにかくこの手順で、以下のドーナツ好きな2人のゲームキャラクターのセリフをそれぞれ学習して、ドーナツの学習結果がどのようになるか見てみたい。
 <ul>
-  <li><a href="https://imascg-slstage-wiki.gamerch.com/%E6%A4%8E%E5%90%8D%E6%B3%95%E5%AD%90">�Ŗ��@�q -�A�C�}�X �f���X�e�U���܂Ƃ�wiki�y�A�C�h���}�X�^�[ �V���f�����K�[���Y �X�^�[���C�g�X�e�[�W�z - Gamerch</a></li>
-  <li><a href="https://wikiwiki.jp/sidem/%E8%8B%A5%E9%87%8C%20%E6%98%A5%E5%90%8D">�ᗢ �t�� - �A�C�h���}�X�^�[sideM Wiki*</a></li>
+  <li><a href="https://imascg-slstage-wiki.gamerch.com/%E6%A4%8E%E5%90%8D%E6%B3%95%E5%AD%90">椎名法子 -アイマス デレステ攻略まとめwiki【アイドルマスター シンデレラガールズ スターライトステージ】 - Gamerch</a></li>
+  <li><a href="https://wikiwiki.jp/sidem/%E8%8B%A5%E9%87%8C%20%E6%98%A5%E5%90%8D">若里 春名 - アイドルマスターsideM Wiki*</a></li>
 </ul>
-�Z���t�͂��炩���ߏ�� URL ����p�[�X���āA���p��S�p�ɂ���v�������݂̂��Ă���B
+セリフはあらかじめ上の URL からパースして、半角を全角にするプレ処理のみしてある。
 
 <pre><code class="r"># -*- coding: utf-8 -*-
 import numpy as np
@@ -443,23 +443,23 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
 
-# Skip-gram �y�A���W�N���X
+# Skip-gram ペア収集クラス
 class SkipGramCollector():
     def __init__(self, list_text_raw, window_size):
-        self.filters = '�`�H�􁛁I��c.!?�A�B�u�v�w�x\n\r'
+        self.filters = '～？♪○！､….!?、。「」『』\n\r'
         self.tagger = MeCab.Tagger('-Owakati')
-        self.window_size = window_size # ���ӂ̉��P����l�����邩
+        self.window_size = window_size # 周辺の何単語を考慮するか
         self.stop_words = []
-        for w in open('Japanese.txt', 'r'): # SlothLib �� StopWords
+        for w in open('Japanese.txt', 'r'): # SlothLib の StopWords
             w = w.replace('\n', '')
             if len(w) > 0:
                 self.stop_words.append(w)
         
-        # �`�ԑf��͂��S�P������W���āA�P��-->ID�����ƁAID-->�P�ꎫ�����쐬
+        # 形態素解析し全単語を収集して、単語-->ID辞書と、ID-->単語辞書を作成
         self.list_text = []
         for text_raw in list_text_raw:
             text = self.tagger.parse(text_raw)
-            # �X�g�b�v���[�h����
+            # ストップワード除去
             _text = text.split()
             _text = [_t for _t in _text if (_t not in self.stop_words)]
             text = ' '.join(_text)
@@ -469,52 +469,52 @@ class SkipGramCollector():
         self.word2id = self.tokenizer.word_index
         self.id2word = {v:k for k, v in self.word2id.items()}
         
-        # ���͂��Ƃ� Skip-gram �΂𓾂�
+        # 文章ごとに Skip-gram 対を得る
         df = pd.DataFrame()
         for text in self.list_text:
             wids = [self.word2id[w] for w in text_to_word_sequence(text, filters=self.filters)]
             pairs, labels = skipgrams(wids, len(self.word2id), window_size=self.window_size)
             df_ = pd.DataFrame()
-            df_['x0'] = np.array([pair[0] for pair in pairs]).astype(np.int64) # ���S��
-            df_['x1'] = np.array([pair[1] for pair in pairs]).astype(np.int64) # ������
-            df_['y'] = np.array(labels).astype(np.int64) # �������x��
+            df_['x0'] = np.array([pair[0] for pair in pairs]).astype(np.int64) # 中心語
+            df_['x1'] = np.array([pair[1] for pair in pairs]).astype(np.int64) # 文脈語
+            df_['y'] = np.array(labels).astype(np.int64) # 正解ラベル
             df = pd.concat([df, df_])
         
-        # ����ɃT���v�����O���ꂽ Skip-gram �΂̂�������Ɋ܂܂�Ă�����̂�����
-        df_dup_check = df[df.duplicated(keep=False) & (df.y == 0)] # ��������΂ł����ĕ���
+        # 負例にサンプリングされた Skip-gram 対のうち正例に含まれているものを除去
+        df_dup_check = df[df.duplicated(keep=False) & (df.y == 0)] # 複数ある対であって負例
         df_dup_check = df_dup_check[df_dup_check.duplicated() == False].copy()
         for index, row in df_dup_check.iterrows():
             df_temp = df[(df.x0 == row['x0']) & (df.x1 == row['x1'])]
-            if np.sum(df_temp.y == 1) > 0: # ���Ⴊ����̂ł��̑΂̕��Ⴉ��͍폜����
+            if np.sum(df_temp.y == 1) > 0: # 正例があるのでこの対の負例からは削除する
                 df_temp = df_temp[df_temp.y == 0]
                 df = df.drop(index=df_temp.index)
         df.reset_index(drop=True, inplace=True)
-        print("����̐��F", np.sum(df.y == 1))
-        print("����̐��F", np.sum(df.y == 0))
+        print("正例の数：", np.sum(df.y == 1))
+        print("負例の数：", np.sum(df.y == 0))
         self.df = df
 
-# Skip-gram ���ʊ�N���X
+# Skip-gram 識別器クラス
 class SkipGramDiscriminator():
     def __init__(self, vocab_size, embed_size):
-        self.vocab_size = vocab_size # ��b��
-        self.embed_size = embed_size # ���ߍ��ݎ�����
+        self.vocab_size = vocab_size # 語彙数
+        self.embed_size = embed_size # 埋め込み次元数
     
     def create_model(self):
-        # ���S��ID --> ���S�ꐔ�l�x�N�g���\��
+        # 中心語ID --> 中心語数値ベクトル表現
         x0 = Input(shape=(1,))
         y0 = Embedding(self.vocab_size, self.embed_size,
                        embeddings_initializer='glorot_uniform')(x0)
         y0 = Reshape((self.embed_size,))(y0)
         self.word_embedder = Model(x0, y0)
         
-        # ������ID --> �����ꐔ�l�x�N�g���\��
+        # 文脈語ID --> 文脈語数値ベクトル表現
         x1 = Input(shape=(1,))
         y1 = Embedding(self.vocab_size, self.embed_size,
                        embeddings_initializer='glorot_uniform')(x1)
         y1 = Reshape((self.embed_size,))(y1)
         self.context_embedder = Model(x1, y1)
         
-        # ���� --> ���W�X�e�B�b�N��A
+        # 内積 --> ロジスティック回帰
         y = Dot(axes=-1)([y0, y1])
         y = Dense(1, kernel_initializer='glorot_uniform', activation='sigmoid')(y)
         self.discriminator = Model(inputs=[x0, x1], outputs=y)
@@ -522,35 +522,35 @@ class SkipGramDiscriminator():
         print(self.discriminator.summary())
 
 if __name__ == '__main__':
-    _train = False # �P�ꕪ�U�\�����w�K����
-    _plot = True # ���ʂ��v���b�g����
+    _train = False # 単語分散表現を学習する
+    _plot = True # 結果をプロットする
     who = 'haruna' # 'noriko'
     
     if _train:
-        # ===== �w�K�p Skip-gram �΂̐��� =====
-        df = pd.read_csv(who + '.csv') # 'str' �Ƃ����J�����ɃZ���t�������Ă���f�[�^�t���[��
+        # ===== 学習用 Skip-gram 対の生成 =====
+        df = pd.read_csv(who + '.csv') # 'str' というカラムにセリフが入っているデータフレーム
         print(df['str'].head(3))
         sgc = SkipGramCollector(df['str'].values, 2)
         print(sgc.df.shape)
         np.savetxt('word_' + who + '.csv', np.array([k for k, v in sgc.word2id.items()]),
                    delimiter=',', fmt='%s')
         
-        print('\r\n----- �P��o��� (���j�[�N�P�ꐔ�F' + str(len(sgc.word2id)) +
-             ', �ꐔ�F' + str(sum([v[1] for v in sgc.tokenizer.word_counts.items()])) + ') -----')
+        print('\r\n----- 単語登場回数 (ユニーク単語数：' + str(len(sgc.word2id)) +
+             ', 語数：' + str(sum([v[1] for v in sgc.tokenizer.word_counts.items()])) + ') -----')
         print(sorted(sgc.tokenizer.word_counts.items(), key=lambda x:x[1], reverse=True)[0:25])
         
-        print('\r\n----- �����x�[�X�P��o��� (�������F' + str(len(sgc.list_text)) + ') -----')
+        print('\r\n----- 文書ベース単語登場回数 (文書数：' + str(len(sgc.list_text)) + ') -----')
         print(sorted(sgc.tokenizer.word_docs.items(), key=lambda x:x[1], reverse=True)[0:25])
         
-        print('\r\n----- Skip-gram�΂̗� -----')
+        print('\r\n----- Skip-gram対の例 -----')
         for index, row in sgc.df.iterrows():
             print("({:s} ({:d}), {:s} ({:d})) -> {:d}".format(
               sgc.id2word[row['x0']], row['x0'], sgc.id2word[row['x1']], row['x1'], row['y']))
             if index == 10:
                 break
         
-        # ===== �l�b�g���[�N�̊w�K =====
-        sg = SkipGramDiscriminator(len(sgc.word2id), 4) # 4�����ɖ��ߍ��ޏꍇ
+        # ===== ネットワークの学習 =====
+        sg = SkipGramDiscriminator(len(sgc.word2id), 4) # 4次元に埋め込む場合
         sg.create_model()
         sg.discriminator.fit([sgc.df.x0.values, sgc.df.x1.values], sgc.df.y.values,
                              batch_size=32, epochs=100)
@@ -559,7 +559,7 @@ if __name__ == '__main__':
         np.savetxt('weight_' + who + '.csv', weight, delimiter=',')
     
     if _plot:
-        # ===== 2�����Ɏ����팸���ăv���b�g =====
+        # ===== 2次元に次元削減してプロット =====
         fp = FontProperties(fname=r'C:\WINDOWS\Fonts\YuGothB.ttc', size=13)
         weight = np.loadtxt('weight_' + who + '.csv', delimiter=',')
         words = np.loadtxt('word_' + who + '.csv', delimiter=',', dtype='unicode')
@@ -567,80 +567,80 @@ if __name__ == '__main__':
         weight2 = TSNE(n_components=2, random_state=0).fit_transform(weight)
         print(weight2.shape)
         plt.scatter(weight2[:,0], weight2[:,1], c='darkgray')
-        for word in (['�I��', '�v���f���[�T�[', '�h�[�i�c', '�h����'] if who is 'haruna' else \
-                     ['������', '�v���f���[�T�[', '�h�[�i�c', '�A�C�h��']):
+        for word in (['オレ', 'プロデューサー', 'ドーナツ', 'ドラム'] if who is 'haruna' else \
+                     ['あたし', 'プロデューサー', 'ドーナツ', 'アイドル']):
             i = np.where(words == word)
             plt.scatter(weight2[i,0], weight2[i,1], c='black')
             plt.text(weight2[i,0], weight2[i,1], word, fontproperties=fp)
         plt.savefig('figure_' + who + '.png')</code></pre>
 <h4>noriko</h4>
-<pre><code>����̐��F 3966
-����̐��F 3901
+<pre><code>正例の数： 3966
+負例の数： 3901
 (7867, 3)
 
------ �P��o��� (���j�[�N�P�ꐔ�F902, �ꐔ�F3238) -----
-[('��', 132), ('��', 110), ('��', 108), ('��', 90), ('�v���f���[�T�[', 89),
- ('�h�[�i�c', 72), ('��', 69), ('��', 65), ('��', 58), ('�[', 57), 
- ('��', 56), ('��', 53), ('��', 52), ('��', 49), ('��', 45), 
- ('������', 42), ('��', 41), ('��', 41), ('��', 39), ('��', 37), 
- ('��', 37), ('��', 32), ('�Ȃ�', 31), ('��', 25), ('�H��', 20)]
+----- 単語登場回数 (ユニーク単語数：902, 語数：3238) -----
+[('の', 132), ('て', 110), ('に', 108), ('は', 90), ('プロデューサー', 89),
+ ('ドーナツ', 72), ('た', 69), ('だ', 65), ('で', 58), ('ー', 57), 
+ ('も', 56), ('よ', 53), ('っ', 52), ('ね', 49), ('と', 45), 
+ ('あたし', 42), ('し', 41), ('を', 41), ('か', 39), ('が', 37), 
+ ('な', 37), ('お', 32), ('ない', 31), ('ん', 25), ('食べ', 20)]
 
------ �����x�[�X�P��o��� (�������F309) -----
-[('��', 115), ('��', 95), ('�v���f���[�T�[', 89), ('��', 89), ('��', 81), 
- ('�h�[�i�c', 70), ('��', 61), ('��', 57), ('��', 54), ('��', 50), 
- ('��', 50), ('��', 49), ('�[', 47), ('��', 45), ('������', 40), 
- ('��', 40), ('��', 38), ('��', 37), ('��', 37), ('��', 35), 
- ('��', 33), ('��', 31), ('�Ȃ�', 29), ('��', 23), ('�H��', 19)]
+----- 文書ベース単語登場回数 (文書数：309) -----
+[('の', 115), ('に', 95), ('プロデューサー', 89), ('て', 89), ('は', 81), 
+ ('ドーナツ', 70), ('た', 61), ('だ', 57), ('で', 54), ('よ', 50), 
+ ('も', 50), ('ね', 49), ('ー', 47), ('っ', 45), ('あたし', 40), 
+ ('し', 40), ('と', 38), ('か', 37), ('を', 37), ('が', 35), 
+ ('な', 33), ('お', 31), ('ない', 29), ('ん', 23), ('食べ', 19)]
 
------ Skip-gram�΂̗� -----
-(������������ (336), �� (7)) -> 1
-(�[ (10), �v���f���[�X (738)) -> 0
-(�[ (10), �� (40)) -> 1
-(�ł� (337), ������������ (336)) -> 1
-(�ł� (337), �u���X���b�g (724)) -> 0
-(�� (40), ���� (475)) -> 0
-(�� (40), ���� (288)) -> 0
-(�� (40), ������ (866)) -> 0
-(�ł� (337), ���� (850)) -> 0
-(������������ (336), ���� (234)) -> 0
-(�� (7), �ł� (337)) -> 1</code></pre>
+----- Skip-gram対の例 -----
+(ごちそうさま (336), た (7)) -> 1
+(ー (10), プロデュース (738)) -> 0
+(ー (10), い (40)) -> 1
+(でし (337), ごちそうさま (336)) -> 1
+(でし (337), ブレスレット (724)) -> 0
+(い (40), がり (475)) -> 0
+(い (40), 聞い (288)) -> 0
+(い (40), かける (866)) -> 0
+(でし (337), 負け (850)) -> 0
+(ごちそうさま (336), 手作り (234)) -> 0
+(た (7), でし (337)) -> 1</code></pre>
 <center><img src="img/figure_noriko.png"/></center><br/>
 <h4>haruna</h4>
-<pre><code>����̐��F 4378
-����̐��F 4231
+<pre><code>正例の数： 4378
+負例の数： 4231
 (8609, 3)
 
------ �P��o��� (���j�[�N�P�ꐔ�F1181, �ꐔ�F5425) -----
-[('��', 232), ('��', 220), ('��', 195), ('��', 181), ('��', 155),
- ('��', 112), ('��', 111), ('��', 111), ('�I��', 91), ('��', 91),
- ('��', 90), ('��', 87), ('��', 85), ('��', 82), ('��', 81), 
- ('�v���f���[�T�[', 75), ('����', 75), ('��', 74), ('��', 69), ('�Ȃ�', 66), 
- ('��', 66), ('�h�[�i�c', 57), ('��', 47), ('�Ă�', 43), ('����', 42)]
+----- 単語登場回数 (ユニーク単語数：1181, 語数：5425) -----
+[('て', 232), ('の', 220), ('な', 195), ('に', 181), ('だ', 155),
+ ('が', 112), ('は', 111), ('も', 111), ('オレ', 91), ('よ', 91),
+ ('た', 90), ('し', 87), ('と', 85), ('で', 82), ('ん', 81), 
+ ('プロデューサー', 75), ('って', 75), ('ぜ', 74), ('か', 69), ('ない', 66), 
+ ('を', 66), ('ドーナツ', 57), ('さ', 47), ('てる', 43), ('いい', 42)]
 
------ �����x�[�X�P��o��� (�������F286) -----
-[('��', 161), ('��', 154), ('��', 153), ('��', 131), ('��', 128), 
- ('��', 96), ('��', 96), ('�I��', 88), ('��', 88), ('��', 86), 
- ('��', 77), ('��', 75), ('��', 74), ('��', 73), ('��', 73), 
- ('��', 73), ('�v���f���[�T�[', 71), ('����', 66), ('��', 64), ('�Ȃ�', 62), 
- ('��', 62), ('�h�[�i�c', 48), ('��', 45), ('�Ă�', 40), ('����', 40)]
+----- 文書ベース単語登場回数 (文書数：286) -----
+[('な', 161), ('て', 154), ('の', 153), ('に', 131), ('だ', 128), 
+ ('が', 96), ('も', 96), ('オレ', 88), ('よ', 88), ('は', 86), 
+ ('で', 77), ('し', 75), ('ぜ', 74), ('と', 73), ('ん', 73), 
+ ('た', 73), ('プロデューサー', 71), ('って', 66), ('か', 64), ('ない', 62), 
+ ('を', 62), ('ドーナツ', 48), ('さ', 45), ('てる', 40), ('いい', 40)]
 
------ Skip-gram�΂̗� -----
-(�Ȃ� (20), �� (14)) -> 1
-(�Ȃ� (44), �� (6)) -> 1
-(�Ȃ� (44), ��� (478)) -> 1
-(�� (2), ���� (755)) -> 0
-(���� (483), ���� (1008)) -> 0
-(���� (484), �� (397)) -> 0
-(���� (287), �˂��� (732)) -> 0
-(�� (2), �R�[�q�[ (161)) -> 1
-(���� (483), �Ȃ� (20)) -> 1
-(�� (7), �Î� (365)) -> 0
-(���� (483), �� (13)) -> 1</code></pre>
+----- Skip-gram対の例 -----
+(ない (20), で (14)) -> 1
+(なら (44), が (6)) -> 1
+(なら (44), 作る (478)) -> 1
+(の (2), 時代 (755)) -> 0
+(悪く (483), 減っ (1008)) -> 0
+(きく (484), こ (397)) -> 0
+(許し (287), ねだり (732)) -> 0
+(の (2), コーヒー (161)) -> 1
+(悪く (483), ない (20)) -> 1
+(は (7), 甘酒 (365)) -> 0
+(悪く (483), と (13)) -> 1</code></pre>
 <center><img src="img/figure_haruna.png"/></center><br/>
-�悭�킩��Ȃ������B<br/>
-���������o��p�x�������ꂪ�u�́v�Ƃ��u�āv�Ȃ̂��ʖڂ����ȋC������B<br/>
-�f�[�^�����Ȃ��Ǝv�������ߍ��ގ��������悭�킩��Ȃ��B<br/>
-�ł����������Ȃ̂� gensim �œǂ߂�`���ɂ��āA�u�h�[�i�c�v�ɗގ��̒P����o���Ă݂�B<br/>
+よくわからなかった。<br/>
+そもそも登場頻度が多い語が「の」とか「て」なのが駄目そうな気がする。<br/>
+データも少ないと思うし埋め込む次元数もよくわからない。<br/>
+でもせっかくなので gensim で読める形式にして、「ドーナツ」に類似の単語を出してみる。<br/>
 <pre><code class="r"># -*- coding: utf-8 -*-
 import numpy as np
 from gensim.models import KeyedVectors
@@ -659,65 +659,65 @@ if __name__ == '__main__':
     
     model = KeyedVectors.load_word2vec_format('word_weight_' + who + '.txt')
     print(len(model.vocab))
-    print(model[u'�h�[�i�c'])
-    print(model.most_similar(u'�h�[�i�c'))</code></pre>
+    print(model[u'ドーナツ'])
+    print(model.most_similar(u'ドーナツ'))</code></pre>
 <h4>noriko</h4>
 <pre><code>902
 [-0.37491137 -0.10871826  1.0103428   0.5701179 ]
-[('����', 0.9954972863197327),
- ('����', 0.9908122420310974), 
- ('��', 0.9868786931037903), 
- ('��������', 0.9773104190826416), 
- ('�Z����', 0.9730000495910645), 
- ('��', 0.9729252457618713), 
- ('�S��', 0.9648570418357849), 
- ('��', 0.9618979692459106), 
- ('�˂�', 0.9618968367576599), 
- ('����', 0.959823489189148)]</code></pre>
+[('くる', 0.9954972863197327),
+ ('だろ', 0.9908122420310974), 
+ ('来', 0.9868786931037903), 
+ ('おっかな', 0.9773104190826416), 
+ ('忙しい', 0.9730000495910645), 
+ ('お', 0.9729252457618713), 
+ ('全力', 0.9648570418357849), 
+ ('ぶ', 0.9618979692459106), 
+ ('ねえ', 0.9618968367576599), 
+ ('もっ', 0.959823489189148)]</code></pre>
 <h4>haruna</h4>
 <pre><code>1181
 [ 0.07973216 -0.8829228   0.758757   -0.4895581 ]
-[('��', 0.990249752998352), 
- ('��������', 0.9864041209220886), 
- ('�v��', 0.9842278957366943), 
- ('���ȏ�', 0.9799279570579529), 
- ('����', 0.9799133539199829), 
- ('��', 0.978289008140564), 
- ('����', 0.9779394865036011), 
- ('�z���C�g', 0.9706403613090515), 
- ('����', 0.9678006768226624), 
- ('����', 0.9661396741867065)]</code></pre>
+[('足', 0.990249752998352), 
+ ('いっちょ', 0.9864041209220886), 
+ ('プロ', 0.9842278957366943), 
+ ('教科書', 0.9799279570579529), 
+ ('仲間', 0.9799133539199829), 
+ ('声', 0.978289008140564), 
+ ('頼っ', 0.9779394865036011), 
+ ('ホワイト', 0.9706403613090515), 
+ ('いき', 0.9678006768226624), 
+ ('いっ', 0.9661396741867065)]</code></pre>
 </div>
 
 
 
 <!-- p8 --->
 <div id='p8' class='slide'>
-<h3>�킩��Ȃ���������</h3>
+<h3>わからなかったこと</h3>
 <ul>
-  <li>�O�����̎d�����S�R�킩���Ă��Ȃ��B�������ǂ�����ď����Ă���̂��悭�킩��Ȃ��B�p�x���Ǝv���B</li>
-  <li>�悢�P�ꕪ�U�\��������ꂽ�Ƃ����̂͂ǂ�����Ă킩��̂��B�ł��A�P�ꕪ�U�\���͍ŏI�ړI�ł͂Ȃ��͂��Ȃ̂ŁA���̒P�ꕪ�U�\����p���ĉ��������^�X�N�̐��x���オ������悢�̂��Ǝv���B</li>
+  <li>前処理の仕方が全然わかっていない。助詞をどうやって除いているのかよくわからない。頻度だと思う。</li>
+  <li>よい単語分散表現が得られたというのはどうやってわかるのか。でも、単語分散表現は最終目的ではないはずなので、その単語分散表現を用いて解きたいタスクの精度が上がったらよいのだと思う。</li>
 </ul>
 
-<h3>5�͂̓��e�̂Â�</h3>
+<h3>5章の内容のつづき</h3>
 <ul>
-  <li>CBOW �� keras �Ŏ����ł���B</li>
-  <li>�ł� Skip-gram �� CBOW ���w�K�������Ȃ� gensim �p�b�P�[�W���悢�B</li>
-  <li>GloVe �ɂ��Ă̓c�[���̏Љ�̂݁B</li>
-  <li>���Ǝ��ۂɎ��R���ꏈ���^�X�N�������Ƃ���3�p�^�[������Ƃ����b�B</li>
+  <li>CBOW も keras で実装できる。</li>
+  <li>でも Skip-gram や CBOW を学習したいなら gensim パッケージがよい。</li>
+  <li>GloVe についてはツールの紹介のみ。</li>
+  <li>あと実際に自然言語処理タスクを解くときに3パターンあるという話。</li>
   <ul>
-    <li>���� Skip-gram, CBOW, GloVe �I�ȃA�v���[�`����炸�����_���ȏ����l���� Embedding �w���܂ߊw�K����B</li>
-    <li>���� Skip-gram, CBOW, GloVe ���Ŋw�K�ς݂̕\����\�߃Z�b�g���� Embedding �w���܂ߊw�K����B</li>
-    <li>���� Skip-gram, CBOW, GloVe ���Ŋw�K�ς݂̕\����\�߃Z�b�g���� Embedding �w�͊w�K���Ȃ��B</li>
+    <li>特に Skip-gram, CBOW, GloVe 的なアプローチを取らずランダムな初期値から Embedding 層を含め学習する。</li>
+    <li>特に Skip-gram, CBOW, GloVe 等で学習済みの表現を予めセットして Embedding 層を含め学習する。</li>
+    <li>特に Skip-gram, CBOW, GloVe 等で学習済みの表現を予めセットして Embedding 層は学習しない。</li>
   </ul>
 </ul>
 
-<h3>���s����̌`��</h3>
+<h3>試行錯誤の形跡</h3>
 <ul>
-  <li><a href="http://cookie-box.hatenablog.com/entry/2018/09/15/181113">���� Deep Learning�F 5�̓����i�P�ꕪ�U�\���j�i����1�j</a></li>
-  <li><a href="http://cookie-box.hatenablog.com/entry/2018/10/01/235641">���� Deep Learning�F 5�̓����i�P�ꕪ�U�\���j�i����2�j</a></li>
-  <li><a href="http://cookie-box.hatenablog.com/entry/2018/10/14/184801">���� Deep Learning�F 5�̓����i�P�ꕪ�U�\���j�i����3�j</a></li>
-  <li><a href="http://cookie-box.hatenablog.com/entry/2018/10/30/095055">���� Deep Learning�F 5�̓����i�P�ꕪ�U�\���j�i�ԊO�ҁj</a></li>
+  <li><a href="http://cookie-box.hatenablog.com/entry/2018/09/15/181113">直感 Deep Learning： 5章メモ（単語分散表現）（その1）</a></li>
+  <li><a href="http://cookie-box.hatenablog.com/entry/2018/10/01/235641">直感 Deep Learning： 5章メモ（単語分散表現）（その2）</a></li>
+  <li><a href="http://cookie-box.hatenablog.com/entry/2018/10/14/184801">直感 Deep Learning： 5章メモ（単語分散表現）（その3）</a></li>
+  <li><a href="http://cookie-box.hatenablog.com/entry/2018/10/30/095055">直感 Deep Learning： 5章メモ（単語分散表現）（番外編）</a></li>
 </ul>
 </div>
 
