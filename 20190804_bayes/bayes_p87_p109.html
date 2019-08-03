@@ -1,0 +1,438 @@
+<html>
+
+<head>
+<title>87～109ページ</title>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            processEscapes: true
+        }
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<style type="text/css">
+<!--
+body {
+    margin: 20px;
+    color: #333333;
+    font-family: 'Tahoma','メイリオ',sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    width: 900px;
+}
+ul, ol {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+ul li, ol li {
+    padding-left: 0.5em;
+    line-height: 1.5;
+}
+div.box {
+    margin: 0.7em 0;
+    padding: 0.6em 0.8em;
+    border: 2px solid #333333;
+}
+div.name {
+    font-weight: bold;
+    margin-bottom: 0.3em;
+}
+
+ul.kome {
+    //font-size: 92%;
+    margin: 0.3em 0;
+}
+ul.kome li {
+    list-style:none;
+    padding-left: 0;
+    text-indent: -1.5em;
+}
+ul.kome li:before {
+    content: "※";
+    padding-right: 0.5em;
+}
+table {
+    margin: 0.3em 0 0.5em;
+    border-collapse: collapse;
+    border: 2px solid #333333;
+}
+table td {
+    padding: 0.5em 0.7em;
+    border: 1px solid #333333;
+}
+p {
+    margin: 0 0 0.5em;
+}
+-->
+</style>
+</head>
+<body>
+
+<h2>「ベイズ統計の理論と方法」の4章前半の理解のためのノート</h2>
+
+<h3>参考文献</h3>
+<ol>
+<li style="font-weight: bold;"><a href="http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/bayes-theory-method.html">渡辺澄夫．ベイズ統計の理論と方法．コロナ社．2012．</a></li>
+<li><a href="https://www.amazon.co.jp/dp/4130621033">松本幸夫．多様体の基礎．東京大学出版会．1988．</a></li>
+<ul style="font-size:88%;"><li>多様体を勉強したことがなかったので言葉の定義の確認と1の分割の理解のために参照しました。但し，4章で肝心な特異点解消定理はより進んだ代数多様体という分野の話なのでこの本にはありません。</li></ul>
+<li><a href="https://www.amazon.co.jp/dp/4254137427">土井正男．統計力学．朝倉書店．2006．</a></li>
+<ul style="font-size:88%;"><li>たまたま手元にありました。元々の状態密度の意味を参照しました（蛇足）。他の統計力学の本やもっと新しい本のことを自分は知りません。</li></ul>
+<!-- <li><a href=""></a></li> -->
+<!-- <ul><li></li></ul> -->
+</ol>
+
+<h3>このノートについて</h3>
+参考文献 1. の4章前半（87～109ページ）の理解のために記したものですが，参考文献 1. の内容をすべてなぞるものではありません。文章は筆者によるものです。参考文献の定理をそのまま引用している箇所を除き，誤りは筆者に帰属します。お気付きの点がございましたらお手数ですが <a href="https://twitter.com/CookieBox26">Twitter</a> またはその他の可能な連絡手段（勉強会の Slack など）にて筆者までご連絡ください。
+<ul style="">
+<li style="color:#e4007f">この文字色は重要や注意の意味です。</li>
+<li style="color:#009854">この文字色は特に脇道にそれる話です。</li>
+<li style="">見出しの下に以下のようにあったらその箇所は明確に書き途中です。
+<div style="border-radius: 0.5em; margin: 0.4em 0 0.7em; padding: 0.5em 0.7em; background:#edde7b; font-size:88%">書き途中です。</div>
+</li>
+</ul>
+<!-- 007bbb 008080 daa520 -->
+
+<h3>目次</h3>
+<ul style="font-weight: bold;">
+<li><a href="#character">登場人物のおさらい</a></li>
+<li><a href="#chap123">3章までのあらすじ</a></li>
+<ul>
+<li><a href="#chap1">1章のあらすじ</a></li>
+<li><a href="#chap2">2章のあらすじ</a></li>
+<li><a href="#chap3">3章のあらすじ</a></li>
+</ul>
+<li><a href="#chap4">4章前半のあらすじ</a></li>
+<li><a href="#chap4_contents">4章前半のノート</a></li>
+<ul>
+<li><a href="#chap4_contents_1">STEP1. 平均誤差が標準形になるようにパラメータを変換する</a></li>
+<li><a href="#chap4_contents_2">STEP2. 変換したパラメータ上の事後分布を求める</a></li>
+<li><a href="#chap4_contents_3">STEP3. 事後分布による期待値をとるためさらに変数変換する</a></li>
+</ul>
+<li><a href="#dasoku">蛇足</a></li>
+</ul>
+
+<h3 id="character">登場人物のおさらい</h3>
+
+<ul>
+<li><b>パラメータ空間に定義される量たち</b></li>
+<table style="font-size:88%;width:100%">
+<tr>
+<td width="11%">\(L(w)\)</td><td width="16%">平均対数損失</td><td>\(L(w) \equiv - \int q(x) \log p(x|w) dx\) 。つまり，真の分布 \(q(x)\) と確率モデル \(p(x|w)\) の交差エントロピー（なのでサンプルは関係ない）。なので，これが小さいパラメータ \(w\) ほど，そのパラメータ \(w\) における確率モデルが真の分布に近いイメージ。<span style="color:#e4007f">この \(L(w)\) の最小点 \(w_0\) が「最適なパラメータ」といわれる。</span>真の分布が確率モデルで実現可能な場合には \(p(x|w_0) = q(x)\) なので \(L(w_0)\) は真の分布のエントロピーに等しくなる。</td>
+</tr>
+<tr>
+<td width="11%">\(L_n(w)\)</td><td width="16%">経験対数損失</td><td>\(L_n(w) \equiv - (1/n) \sum_{i=1}^n \log p(X_i|w)\) 。つまり，サンプルによる経験分布と確率モデル \(p(x|w)\) の交差エントロピー。なのでサンプルに依存する確率変数。</td>
+</tr>
+<tr>
+<td width="11%">\(K(w)\)</td><td width="16%">平均誤差</td><td>\(K(w) \equiv \int q(x) f(x,w) dx\) 。つまり，真の分布 \(q(x)\) 上での，対数尤度比（※） \(f(x,w) \equiv \log p(x|w_0) / p(x|w)\) の平均（なのでサンプルは関係ない）。平均損失の最適なパラメータとの差 \(L(w) - L(w_0)\) に等しい。最適なパラメータ \(w_0\) においては任意の \(x\) で \(f(x,w_0)=0\) なので \(K(w_0)=0\) である。</td>
+</tr>
+<tr>
+<td width="11%">\(K_n(w)\)</td><td width="16%">経験誤差</td><td>\(K_n(w) \equiv (1/n) \sum_{i=1}^n f(X_i,w) \) 。つまり，サンプルによる経験分布上での，対数尤度比 \(f(x,w)\) の平均。なのでサンプルに依存する確率変数。平均誤差同様， \(L_n(w) - L_n(w_0)\) に等しく，\(K_n(w_0)=0\) である。</td>
+</tr>
+</table>
+<ul class="kome" style="font-size:88%; margin-bottom:0.4em;">
+<li>平均対数損失 \(L(w)\) の最小点が1点でなく，最適な確率分布が実質的にユニークでない場合は対数尤度比は \(w_0\) の選び方に依存するので \(f(x,w_0,w)\) とかくべきだが，3章と4章では最適な確率分布が実質的にユニークな場合を扱う。</li>
+</ul>
+
+<li><b>予測分布の形にかかわる量たち</b></li>
+<span style="font-size:88%">すべてサンプルに依存する確率変数。</span>
+<table style="font-size:88%;width:100%">
+<tr>
+<td width="11%">\(Z_n(\beta)\)</td><td width="16%">分配関数</td><td>\(Z_n(\beta) \equiv \int_W \varphi(w) \prod_{i=1}^n p(X_i|w)^\beta dw\) 。事後分布の分母。\(Z_n(\beta)\) 自体は \(n \to \infty\) で \(0\) に収束してしまうので，\(n\) を大きくしたときのベイズ推測の性質を知りたいときは，下の自由エネルギーの方が適している。
+<hr style="border: none; border-top: dashed 1px #999999; height: 1px; margin: 0.3em 0;"/>
+以下のように式変形できる。<br/>
+\(Z_n(\beta) = \int_W \exp \bigl( \log \prod_{i=1}^n p(X_i|w)^\beta \bigr) \varphi(w) dw \)<br/>
+\(= \int_W \exp \bigl( \beta \sum_{i=1}^n \log p(X_i|w) \bigr) \varphi(w) dw \)<br/>
+\(= \int_W \exp \bigl( -n \beta L_n(w) \bigr) \varphi(w) dw \)<br/>
+\(= \int_W \exp \bigl( -n \beta \bigl( L_n(w_0) + K_n(w) \bigr) \bigr) \varphi(w) dw \)<br/>
+\(= \exp \bigl( -n \beta L_n(w_0) \bigr) \int_W \exp \bigl( -n \beta K_n(w) \bigr) \varphi(w) dw \)<br/>
+\(\equiv \exp \bigl( -n \beta L_n(w_0) \bigr) Z_n^{(0)}(\beta) \)<br/>
+ここで定義した \(Z_n^{(0)}(\beta) \equiv \int_W \exp \bigl( -n \beta K_n(w) \bigr) \varphi(w) dw\) を正規化された分配関数とよぶ。\(K_n(w) \geqq 0\) なので，\(0 < Z_n^{(0)}(\beta) \leqq 1 \) 。
+</td>
+</tr>
+<tr>
+<td width="11%">\(F_n(\beta)\)</td><td width="16%">自由エネルギー</td><td>\(F_n(\beta) \equiv - \beta^{-1} \log Z_n (\beta) \) 。分配関数 \(Z_n(\beta)\) の対数をとって逆温度の逆数をかけてマイナス1倍したもの。
+<hr style="border: none; border-top: dashed 1px #999999; height: 1px; margin: 0.3em 0;"/>
+\(F_n^{(0)}(\beta) \equiv - \beta^{-1} \log Z_n^{(0)} (\beta) \) を正規化された自由エネルギーとよぶ。\(0 \leqq F_n^{(0)}(\beta)\) 。また，正規化された分配関数の式の対数をとればわかるように，\(F_n(\beta) = n L_n(w_0) + F_n^{(0)}(\beta)\) 。</td>
+</tr>
+<tr>
+<td width="11%">\(p(w|X^n)\)</td><td width="16%">事後分布</td><td>\(p(w|X^n) \equiv Z_n (\beta)^{-1} \varphi(w) \prod_{i=1}^n p(X_i|w)^\beta \) 。<span style="color:#e4007f">ベイズ推測の予測分布とはこの事後分布上で確率モデルを平均したもの \(p^\ast(x) \equiv \int_W p(x|w) p(w|X^n) dw \) である。</span>
+<hr style="border: none; border-top: dashed 1px #999999; height: 1px; margin: 0.3em 0;"/>
+正規化された分配関数 \(Z_n^{(0)}(\beta)\) と経験誤差 \(K_n(w)\) を用いて以下のようにかける。<br/>
+\(p(w|X^n) = Z_n (\beta)^{-1} \exp \bigl( -n \beta \bigl( L_n(w_0) + K_n(w) \bigr) \bigr) \varphi(w) \)<br/>
+\(= Z_n^{(0)}(\beta)^{-1} \exp \bigl( -n \beta K_n(w) \bigr) \varphi(w) \)</td>
+</tr>
+</table>
+
+<li><b>予測分布のよさをあらわす量たち</b></li>
+<span style="font-size:88%">すべてサンプルに依存する確率変数。</span>
+<table style="font-size:88%;width:100%">
+<tr>
+<td width="11%">\(G_n\)</td><td width="16%">汎化損失</td>
+<td>\(G_n \equiv - \int q(x) \log p^\ast(x) dx \) 。真の分布 \(q(x)\) と予測分布 \(p^\ast(x)\) の交差エントロピー（予測分布はサンプルに基づくのでサンプル依存）。
+<hr style="border: none; border-top: dashed 1px #999999; height: 1px; margin: 0.3em 0;"/>
+以下のように式変形できる。<br/>
+\(G_n = - \int q(x) \log p^\ast(x) dx\)<br/>
+\(= - \int q(x) \log \Bigl( \int_W p(x|w) p(w|X^n) dw \Bigr) dx\)<br/>
+\(= - \int q(x) \log \Bigl( \int_W \exp \bigl( \log p(x|w) \bigr) p(w|X^n) dw \Bigr) dx\)<br/>
+\(= - \int q(x) \log \Bigl( \int_W \exp \bigl( \log p(x|w_0) - f(x,w) \bigr) p(w|X^n) dw \Bigr) dx\)<br/>
+\(= - \int q(x) \log \Bigl( \exp \bigl( \log p(x|w_0) \bigr) \int_W \exp \bigl( - f(x,w) \bigr) p(w|X^n) dw \Bigr) dx\)<br/>
+\(= - \int q(x) \log p(x|w_0)dx - \int q(x) \log \Bigl(\int_W \exp \bigl( - f(x,w) \bigr) p(w|X^n) dw \Bigr) dx\)<br/>
+\(= L(w_0) - \int q(x) \log \Bigl(\int_W \exp \bigl( - f(x,w) \bigr) p(w|X^n) dw \Bigr) dx\)<br/>
+上式の第2項 \(G_n^{(0)} \equiv - \int q(x) \log \Bigl(\int_W \exp \bigl( - f(x,w) \bigr) p(w|X^n) dw \Bigr) dx\) を汎化誤差とよぶ。汎化誤差は，真の分布が確率モデルで実現可能な場合には，真の分布と予測分布のカルバック・ライブラー情報量に等しい（その場合に限っては42ページの誤植が正しい）。
+<hr style="border: none; border-top: dashed 1px #999999; height: 1px; margin: 0.3em 0;"/>
+\(\mathcal{G}_n(\alpha)\equiv \mathbb{E}_X \Bigr[ \log \mathbb{E}_w \bigr[ p(X|w)^\alpha \bigl] \Bigl]\) と定義すると（これを汎化損失のキュムラント母関数とよぶ；サンプルに依存する確率的な関数），以下が成り立つ。<br/>
+\(\mathcal{G}_n(1) = \mathbb{E}_X \Bigr[ \log \mathbb{E}_w \bigr[ p(X|w) \bigl] \Bigl]\)
+\(=\mathbb{E}_X \Bigr[ \log \bigr[ \int_W p(X|w) p(w|X^n) dw \bigl] \Bigl]\)
+\(=\mathbb{E}_X \Bigr[ \log p^\ast(X) \Bigl]\)
+\(= \int q(x) \log p^\ast(X) dx \)
+\(= - G_n \)<br/>
+また，任意の \(\alpha > 0\) に対して，\(\mathcal{G}_n(\alpha)\) が区間 \([0,\alpha]\) で3回微分可能ならば，<a href="https://mathtrain.jp/taylortheorem">テイラーの定理</a>より以下を満たす \(0 < \alpha^\ast < \alpha\) が存在する。<br/>
+\(\mathcal{G}_n(\alpha) = \mathcal{G}_n(0) + \alpha \mathcal{G}'_n(0) + (1/2) \alpha^2 \mathcal{G}''_n(0) + (1/6) \alpha^3 \mathcal{G}^{(3)}_n(\alpha^\ast) \)<br/>
+したがって，汎化損失はある \(0 < \alpha^\ast < 1\) を用いて以下のように展開できる。<br/>
+\(G_n = - \mathcal{G}_n(0) - \alpha \mathcal{G}'_n(0) - (1/2) \alpha^2 \mathcal{G}''_n(0) - (1/6) \mathcal{G}^{(3)}_n(\alpha^\ast) \)
+</td>
+</tr>
+<tr>
+<td width="11%">\(T_n\)</td><td width="16%">経験損失</td>
+<td>\(T_n \equiv - (1/n) \sum_{i=1}^n \log p^\ast(X_i) \) 。サンプルによる経験分布と予測分布 \(p^\ast(x)\) の交差エントロピー（なので経験分布的にも予測分布的にもサンプル依存）。
+<hr style="border: none; border-top: dashed 1px #999999; height: 1px; margin: 0.3em 0;"/>
+汎化損失同様，以下のように式変形できる。<br/>
+\(T_n = L(w_0) - (1/n) \sum_{i=1}^n \log \Bigl(\int_W \exp \bigl( - f(X_i, w) \bigr) p(w|X^n) dw \Bigr)\)<br/>
+上式の第2項 \(T_n^{(0)} \equiv - (1/n) \sum_{i=1}^n \log \Bigl(\int_W \exp \bigl( - f(X_i, w) \bigr) p(w|X^n) dw \Bigr)\) を経験誤差（※ \(K_n(w)\) も経験誤差なので名前がかぶっているが別物である）とよぶ。
+<hr style="border: none; border-top: dashed 1px #999999; height: 1px; margin: 0.3em 0;"/>
+\(\mathcal{T}_n(\alpha)\equiv (1/n) \sum_{i=1}^{n}  \log \mathbb{E}_w \bigr[ p(X_i|w)^\alpha \bigl] \) と定義すると（これを経験損失のキュムラント母関数とよぶ；サンプルに依存する確率的な関数），以下が成り立つ。<br/>
+\(\mathcal{T}_n(1) = (1/n) \sum_{i=1}^{n}  \log \mathbb{E}_w \bigr[ p(X_i|w) \bigl] \)
+\(=(1/n) \sum_{i=1}^{n} \log \bigr[ \int_W p(X_i|w) p(w|X^n) dw \bigl] \)
+\(=(1/n) \sum_{i=1}^{n} \log p^\ast(X_i) \)
+\(= - T_n \)<br/>
+また，\(\mathcal{T}_n(\alpha)\) が区間 \([0,1]\) で3回微分可能ならば，汎化損失同様，経験損失はある \(0 < \alpha^\ast < 1\) を用いて以下のように展開できる。<br/>
+\(T_n = - \mathcal{T}_n(0) - \alpha \mathcal{T}'_n(0) - (1/2) \alpha^2 \mathcal{T}''_n(0) - (1/6) \mathcal{T}^{(3)}_n(\alpha^\ast) \)
+</td>
+</tr>
+</table>
+</ul>
+
+
+<h3 id="chap123">3章までのあらすじ</h3>
+
+<div style="margin: 0.7em 0; padding: 0.6em 0.8em; border: 1px dashed #e4007f; color:#e4007f; font-size:88%">
+全体的に以下を仮定します。
+<ul>
+<li>パラメータ集合 \(W\) はユークリッド空間のコンパクトな部分集合（※）であり，かつ，開集合 \(W' \supset W\) が存在して，\(K(w)\) が \(W'\) 上の解析関数（※）であることにします（95ページ）。</li>
+<ul class="kome" style="">
+<li>「ユークリッド空間のコンパクトな部分集合である」は，「ユークリッド空間の閉集合であって，じゅうぶん大きな半径 \(r > 0\) の球で覆うことができる」と同値です。</li>
+<li>解析関数とは，定義域の各点においてその点の周りでのテイラー展開と一致するような関数のことです。</li>
+</ul>
+<li>3章と4章では，対数尤度比 \(f(x,w_0,w)\) が相対的に有限な分散をもつ（任意の \(w_0, \, w\) について，真の分布上での \(f(x,w_0,w)\) の2乗の平均が1乗の平均の定数倍で抑えられる）とします（39ページ，41ページ）。</li>
+</ul>
+</div>
+
+<h4 id="chap1">1章のあらすじ</h4>
+<ul>
+<li>「ベイズ推測する」とは「真の分布はおおよそ \(p^\ast(x)\) だろうと考える」ということです。しかし，そういわれただけでは \(p^\ast(x)\) は本当にいつも真の分布に近く（近いとは？）なってくれるのかとか，どんなときにどれくらい近くなってくれるのかとかが全然わかりません。この辺の理論的な根拠を示さないとベイズ推測の沽券に関わります。</li>
+<ul style="font-size:88%;">
+<li>現実に統計的推測をするときは「真の分布」などというものはないことも多いですが，少なくとも真の分布があるときには（何らかの指標で）それに近づくことができないと統計的推測として駄目だと思います。</li>
+</ul>
+<li>そういう根拠として，「真の分布 \(q(x)\) と予測分布 \(p^\ast(x)\) の交差エントロピーである汎化損失 \(G_n\) が，サンプル数 \(n\) を大きくしていくほど，その確率モデル \(p(x|w)\) で到達しうる下限値 \(L(w_0)\) の近くで分布する」といえればひとまずはよい気がします。</li>
+<ul style="font-size:88%;">
+<li style="color:#009854">「サンプル数を大きくしていけば真の分布を再現することができる」は，統計的推測に期待する性質としてまっとうなものだと思います。頻度統計でもこれに該当する一致性（\(n \to \infty\) でパラメータの推定量が真のパラメータに確率収束すること）という性質があり，よく知られる最尤推定や最小2乗推定は適当な条件下でそれを満たします。</li>
+<li style="color:#009854">分布間の近さの指標として交差エントロピーは唯一無二のものではないですが，ここではこれを指標にします。</li>
+<!--
+<li>確率モデルで真の分布が実現可能な場合には，\(G_n\) が到達しうる下限値は真の分布 \(q(x)\) のエントロピーになりますが，確率モデルが真の分布で実現可能とは限らないので，一般に \(G_n\) が到達しうる下限値は真の分布 \(q(x)\) と最適なパラメータでの確率モデル \(p(x|w_0)\) の交差エントロピー \(L(w_0)\) になります。</li>
+-->
+<li>結果的には上のことはちゃんといえて，3章だと70ページの定理3，4章だと114ページの定理12がそれです。</li>
+</ul>
+</ul>
+
+<h4 id="chap2">2章のあらすじ</h4>
+<ul>
+<li>なので，汎化損失 \(G_n \equiv -\mathbb{E}_X \Bigl[ \log \mathbb{E}_w \bigl[ p(X|w) \bigr] \Bigr]\) ってどう分布するんだろう，という話になります。この式のままだと \(G_n\) の分布がどんな形をしていて，その形がサンプル数 \(n\) にどう依存しているのか全然わかりません。そこでまず一番内側の期待値に注目すると，\(p(X|w)\) という量について事後分布上での期待値 \(\mathbb{E}_w\) をとっています。これを事後分布の平均（期待値）ではなくもっと違う分布形状の特徴，例えば分散などが出てくるように変形したいです。なぜなら，事後分布はサンプル数 \(n\) が大きくなるほど分散が小さくなりそうなので，分散のような分布形状の特徴にこそ \(n\) への依存性が出そうだからです<span style="font-size:88%">（この文章は何となくかいたのでとりわけあやしいです）</span>。ここで一般に，確率変数 \(Z\) に対して，\(e^{\alpha Z}\) の期待値を
+\[\mathbb{E}[e^{\alpha Z}] = \exp \left( \alpha \kappa_1 + \frac{1}{2}\alpha^2 \kappa_2 + \frac{1}{3!}\alpha^3 \kappa_3 + \cdots \right)\]
+と展開できます（キュムラント展開）。ここで \(\kappa_k\) は \(Z\) の \(k\) 次キュムラントといって，\(Z\) の分布の形状を特徴づける値になっており，\(1\) 次キュムラントは \(Z\) の平均に等しく，\(2\) 次キュムラントは \(Z\) の分散に等しいです。なので，\(Z = \log p(X|w)\) を事後分布上でキュムラント展開して \(\alpha = 1\) とすれば
+\[\mathbb{E}_w \bigl[ p(X|w) \bigr] = \exp \left( \kappa_1 + \frac{1}{2} \kappa_2 + \frac{1}{3!} \kappa_3 + \cdots \right) \]
+\[\log \mathbb{E}_w \bigl[ p(X|w) \bigr] = \kappa_1 + \frac{1}{2} \kappa_2 + \frac{1}{3!} \kappa_3 + \cdots \tag{ $\ast$ }\]
+となり，分散 \(\kappa_2\) を登場させることができます。一般に \(Z\) の \(k\) 次キュムラントは \(\log \mathbb{E} \bigl[ e^{\alpha Z} \bigr]\) を \(\alpha\) で \(k\) 回微分して \(\alpha = 0\) とすると得られます（キュムラント母関数）。なので，ここでのキュムラント母関数は \(\log \mathbb{E}_w \bigl[ p(X|w)^{\alpha} \bigr]\) ですが，汎化損失は \((\ast)\) にさらに真の分布上での期待値 \(\mathbb{E}_X\) をとるので，今回はキュムラント母関数もあらかじめ \(\mathcal{G}_n(\alpha)\equiv \mathbb{E}_X \Bigr[ \log \mathbb{E}_w \bigr[ p(X|w)^\alpha \bigl] \Bigl]\) と定義すれば
+\[G_n = - \kappa_1 - \frac{1}{2} \kappa_2 - \frac{1}{3!} \kappa_3 - \cdots \]
+と展開できます。</li>
+<ul style="color:#e4007f;font-size:88%;">
+<li>ただ，キュムラント母関数をこう定義するならば，\(k\) 次キュムラントを求めるときに，これをこのまま \(k\) 回微分して \(\alpha = 0\) とするのは誤りで，「\(\mathbb{E}_X\) を一度はがして，その中身に \(k\) 回微分して \(\alpha = 0\) として，\(\mathbb{E}_X\) をとる」という手順によらなければならないと思います。しかし，\(\alpha\) での微分と \(\mathbb{E}_X\) が交換するならどのみち同じです。以下，交換するものとします。</li>
+</ul>
+<li>なお，汎化損失 \(G_n\) は対数尤度比をつかって \(G_n = - \mathbb{E}_X \Bigl[\log \mathbb{E}_w \bigl[ \exp \bigl(- L(w_0) - f(X,w) \bigr) \bigr] \Bigr] \) ともかけるので，キュムラント母関数も \(\mathcal{G}_n(\alpha) = - \alpha L(w_0) + \mathbb{E}_X \Bigr[\log \mathbb{E}_w \bigr[ \exp \bigl( - \alpha f(X,w) \bigr) \bigl] \Bigl]\) ともかけます。</li>
+<li>具体的に \(\mathcal{G}_n(\alpha)\) の \(1\) 回微分と\(2\) 回微分を計算すると以下を得ます<span style="color:#e4007f;font-size:88%;">（\(\alpha\) での微分と \(\mathbb{E}_w\) も交換するものとします）</span>。
+\[ \frac{d\mathcal{G}_n(\alpha)}{d \alpha} = - L(w_0) + \mathbb{E}_X \left[ \frac{\mathbb{E}_w \bigr[ - f(X,w) \exp \bigl( - \alpha f(X,w) \bigr) \bigl]}{\mathbb{E}_w \bigr[ \exp \bigl( - \alpha f(X,w) \bigr) \bigl]} \right] \]
+\[ \frac{d^2 \mathcal{G}_n(\alpha)}{d \alpha^2} = \mathbb{E}_X \left[ \frac{\mathbb{E}_w \bigr[ \bigl( - f(X,w) \bigr) ^2 \exp \bigl( - \alpha f(X,w) \bigr) \bigl]}{\mathbb{E}_w \bigr[ \exp \bigl( - \alpha f(X,w) \bigr) \bigl]} - \left( \frac{\mathbb{E}_w \bigr[ - f(X,w) \exp \bigl( - \alpha f(X,w) \bigr) \bigl]}{\mathbb{E}_w \bigr[ \exp \bigl( - \alpha f(X,w) \bigr) \bigl]} \right)^2 \right] \]
+よって，\(1\) 次キュムラントと \(2\) 次キュムラントはこうなります。
+\[ \kappa_1 = \left. \frac{d\mathcal{G}_n(\alpha)}{d \alpha} \right|_{\alpha = 0} = - L(w_0) + \mathbb{E}_X \Bigl[ \mathbb{E}_w \bigr[ - f(X,w) \bigl] \Bigr] = - L(w_0) - \mathbb{E}_w \bigr[ K(w) \bigl]\]
+\[ \kappa_2 = \left. \frac{d^2 \mathcal{G}_n(\alpha)}{d \alpha^2} \right|_{\alpha = 0} = \mathbb{E}_X \Bigl[ \mathbb{E}_w \bigr[ f(X,w) ^2 \bigl] - \mathbb{E}_w \bigr[ f(X,w) \bigl]^2 \Bigr] \]
+このことから，汎化損失 \(G_n\) が以下のように，下限値 \(L(w_0)\) と残りの項の和でかけることがわかります。
+\[G_n = L(w_0) + \mathbb{E}_w \bigr[ K(w) \bigl] - \frac{1}{2} \mathbb{E}_X \Bigl[ \mathbb{E}_w \bigr[ f(X,w) ^2 \bigl] - \mathbb{E}_w \bigr[ f(X,w) \bigl]^2 \Bigr] - \frac{1}{3!} \kappa_3 - \cdots \]
+残りの項には事後分布上での平均誤差 \(K(w)\) の期待値や対数尤度比 \(f(X, w)\) の分散が出てきます。\(3\) 次や \(4\) 次のキュムラントは事後分布上での \(\log p(X|w)\) の分布の尖度や歪度に対応しますが，もし \(n \to \infty\) でその分布が正規分布（正規分布は \(3\) 次以上のキュムラントが \(0\)）に近づくならば \(3\) 次以上のキュムラントは \(0\) に近づきます。</li>
+<li>まとめると，ベイズ推測の沽券のために少なくとも示さないといけないことは，\(n\) を大きくすると
+\[\mathbb{E}_w \bigr[ K(w) \bigl] - \frac{1}{2} \mathbb{E}_X \Bigl[ \mathbb{E}_w \bigr[ f(X,w) ^2 \bigl] - \mathbb{E}_w \bigr[ f(X,w) \bigl]^2 \Bigr] - \frac{1}{3!} \kappa_3 - \cdots \]
+が小さくなることです（これはサンプルの選び方に依存する確率変数ですが，\(n\) が大きいときはこの分布の平均が \(0\) に近くなってほしいし，分散も小さくなってほしいということです）。
+</li>
+</ul>
+
+<h4 id="chap3">3章のあらすじ</h4>
+
+<ul>
+<li>上のことを示さないといけないんですが，といっても事後分布がどんな形か全然わからないので事後分布上での期待値や分散などわかりません。事後分布は \(p(w|X^n) \propto \exp \bigl( -n \beta L_n(w) \bigr) \varphi(w) \) でした。これをみると，\(L_n(w)\) の部分が \((w - \mu)^\top \Sigma^{-1} (w - \mu) \) \(\cdots (\ast \ast)\) という形をしてくれていれば正規分布になることに気付きます（但し \(\Sigma\) は正定値）。正規分布であれば期待値も分散も計算できそうです。\(L_n(w)\) はサンプルの選び方に依存するので \(L_n(w)\) が \((\ast \ast)\) の形であると仮定するのは現実的ではないですが，\(L(w)\) が \((\ast \ast)\) の形であると仮定して，\(n\) がじゅうぶん大きければ \(L_n(w)\) の形もだいたいこの形になるといえればいい気がします。また，パラメータ空間 \(W\) 上のどこでも \((\ast \ast)\) の形でないといけないわけでもなくて，事後分布の確率密度が一番濃くなる点は（\(n \to 0\) で）\(w_0\) なので，確率密度が密集していく \(w_0\) の周りでだけこの形であれば何とかなりそうです。最適なパラメータ \(w_0\) がただ1点のみでない場合は事後分布が単峰の正規分布にならないので \(w_0\) はただ1点と仮定してしまいましょう。\(L(w)\) が \(w_0\) の周りで \((\ast \ast)\) の形に近似できることは，\(L(w)\) のヘッセ行列が \(w = w_0\) で正定値であることと同じです。
+<div style="margin: 0.7em 0 0.4em; padding: 0.6em 0.8em; border: 1px dashed #e4007f; color:#e4007f;">いま仮定したこと： \(L(w)\) がただ1つの最小点 \(w_0\) をもち，\(w_0\) でのヘッセ行列が正定値である（※）。</div>
+<ul class="kome"><li style="color:#e4007f;font-size:88%">2章で定義した言葉でいえば，「 \(q(x)\) が \(p(x|w)\) に対して正則である」。</li></ul>
+実際，こう仮定すれば，\(n\) が大きいときに事後分布が正規分布に近くなることを示すことができます。以下の手順によります。</li>
+<ul>
+<li>事後分布は \(p(w|X^n) \propto \exp \bigl( -n \beta K_n(w) \bigr) \varphi(w) \) ともかけました（分布のピークで \(\exp\) の中身が \(0\) になるように \(L_n(w)\) をオフセットしただけです）。事後分布の密度が濃いところにだけ注目したいので，\(K(w)\) が \(0\) に近いところだけ切り取ってしまいましょう。どうせ外側の確率は無視できると思います。内側の確率と外側の確率はそれぞれ以下です。
+\[Z_n^{(1)}(\beta) \equiv \int_{K(w) < \epsilon} \exp \bigl( -n \beta K_n(w) \bigr) \varphi(w) dw\]
+\[Z_n^{(2)}(\beta) \equiv \int_{K(w) \geqq \epsilon} \exp \bigl( -n \beta K_n(w) \bigr) \varphi(w) dw\]
+但し，\(\epsilon\) は \(n\) の関数であって，\(n \to \infty\) で \(0\) に近づくが，\(n^{-1/2}\) よりは \(0\) に近づくのが遅いものにしてください。\(\epsilon = n^{-1/4}\) とかでいいです。\(w_0\) の周りだけ切り取りたいんですが，あまり小さく切り取りすぎると外側の確率が無視できなくなってくるのでこうします。
+</li>
+<li>ちゃんと確かめると，上記の \(Z_n^{(2)}(\beta)\) の方は \(\exp(-\sqrt{n})\) より速く \(0\) に収束します（補題12）。</li>
+<li>ちゃんと確かめると，上記の \(Z_n^{(1)}(\beta)\) の方は以下のようになることがわかります（補題13）。
+\[Z_n^{(1)}(\beta) = \int_{K(w) < \epsilon} \exp \left( - \frac{n \beta}{2} \left\| J^{1/2} \left( w - w_0 - \frac{\hat{\xi}_n}{\sqrt{n}} \right) \right\|^2 \right) dw \times \exp \left( \frac{\beta}{2} || {\xi}_n ||^2  \right) \times \varphi(w_0)(1 + \mathcal{o}_p(1) )\]
+</li>
+<li>だったら事後分布による平均は以下のようになりそうです。なります（補題15）。これで事後分布上での期待値や分散が計算できそうです。
+\[\mathbb{E}_w [ \cdot ] = \frac{\displaystyle \int ( \cdot ) \exp \left( - \frac{n \beta}{2} \left\| J^{1/2} \left( w - w_0 - \frac{\hat{\xi}_n}{\sqrt{n}} \right) \right\|^2 \right) dw}{\displaystyle \int \exp \left( - \frac{n \beta}{2} \left\| J^{1/2} \left( w - w_0 - \frac{\hat{\xi}_n}{\sqrt{n}} \right) \right\|^2 \right) dw}(1 + \mathcal{o}_p(1) )\]</li>
+<li>事後分布が正規分布に近づくなら，\(3\) 次以上のキュムラントも \(0\) に近づいていくはずです。確かめると，\(n^{-k/2}\) と同じ速さで \(0\) に近づきます（補題17）。</li>
+</ul>
+<li>以上から，汎化損失 \(G_n\) は \(n\) を大きくするほど \(L(w_0)\) の近くで分布することが示されます（定理3）。
+\[G_n = L(w_0) + \frac{1}{n} \left( \frac{d}{2 \beta} + \frac{1}{2} || \xi_n ||^2 - \frac{1}{2 \beta} {\rm tr}(IJ^{-1}) \right) + \mathcal{o}_p \left( \frac{1}{n} \right) \]
+言い換えると，ベイズ推測の予測分布は，サンプル数 \(n\) を大きくするほど確率モデルで実現しうるベストな分布である \(p(x|w_0)\) に近づくことが示されました。これならベイズ推測を安心して利用することができそうです。</li>
+</ul>
+
+<h3 id="chap4">4章前半のあらすじ</h3>
+
+<ul>
+<li>と，一瞬安心した気がしたんですが，さっきの議論では \(L(w)\) のヘッセ行列がただ1つの最小点 \(w = w_0\) で正定値であるという仮定を置いていました。この仮定が満たされているかは現実には確かめようがありません（真の分布は知り得ないので）<span style="font-size:88%">（もっとも，最初に仮定した「平均誤差が解析的」とか「相対的に有限な分散」とかも知り得ないと思いますが）</span>。これではやっぱり安心して眠れない気がします。</li>
+<li>\(L(w) = (w - \mu)^\top \Sigma^{-1} (w - \mu) \) と仮定することができないなら，パラメータ空間 \(W\) の方を歪めてしまうことで，つまり，何か座標変換することで，\(L_u(u) = (u - \mu)^\top \Sigma^{-1} (u - \mu) \) のようにすることはできないでしょうか。オフセットした \(K(w)\) の方でいうなら \(K_u(u) = u^\top \Sigma^{-1} u \) のようにすることはできないでしょうか。</li>
+<li>実は，\(K_u (u) = u_1^{2k_1} u_2^{2k_2} \cdots u_d^{2k_d}\) とすることがいつもできます。以下の手順によります。
+<ul>
+<li>かなり自由に歪めることができる多様体という空間を用意して，パラメータはそこから上京してきたことにします。パラメータは田舎 \(\mathcal{M}\) では \(u\) という住所（座標）だったんですが，都会 \(W\) に上京して \(w = g(u)\) という住所（座標）になったということにします。</li>
+<li>実は，この本の仮定を満たすパラメータ空間 \(W\) と平均誤差 \(K(w)\) にはいつも，「その多様体上の座標 \(u\) でなら \(K_u(u) = u_1^{2k_1} u_2^{2k_2} \cdots u_d^{2k_d} \) となる」ような都合のよい多様体 \(\mathcal{M}\) と座標変換 \(g\) が存在してくれます（特異点解消定理）。そんな多様体 \(\mathcal{M}\) をパラメータたちの出身の田舎だと思って，帰省してもらえばよいです。</li>
+</ul>
+\(u\) は \(\mathcal{M}\) 上の \(d\) 次元座標（\(\mathbb{R}^d\) の元 ※）で，\(k = (k_1, k_2, \cdots, k_d)\) は少なくともどれか1つは \(0\) ではない非負整数の \(d\) 個組ですが，以降，表記の仕方の約束として，\(u^{2k} \equiv u_1^{2k_1} u_2^{2k_2} \cdots u_d^{2k_d}\) とします。
+<ul class="kome" style="font-size:88%">
+<li>但し \(u\) の取りうる値は \(\mathbb{R}^d\) 全体ではなく，\(g\) によって \(W\) にうつされる \(\mathcal{M}\) 上の点の座標がとりうる値です。このような \(u\) の集合はコンパクトになります（95ページ）。</li>
+</ul>
+</li>
+<li>そうなると事後分布 \(p(w|X^n) \propto \exp \bigl( -n \beta K_n(w) \bigr) \varphi(w) \) がどうなるのか考えます。
+<ul>
+<li>経験誤差 \(K_n(w)\) は \(n \to \infty\) で \(K(w)\) に近づきそうですが，実際以下のようになります（定理7）。
+\[ n K_n (g(u)) = n u^{2k} - \sqrt{n} u^k \xi_n(u)\]
+</li>
+<li>事前分布 \(\varphi(w)\) はどうなるのでしょうか。3章では \(q(x)\) が \(p(x|w)\) に対して正則と仮定していたので \(n \to \infty\) ではただ1点の \(w_0\) での値しか事後分布に関わってきませんでしたが（というか正規化で消えましたが），いまは最適なパラメータ \(w_0\) は複数あったり無数にあったりするかもしれないです。\(\mathcal{M}\) の座標の世界で事前分布がどのような分布になっているかちゃんと考えないといけないです。ただ，せっかく都合のよい座標変換をするのなら，\(\varphi(w)\) の分布の濃淡も込みで座標変換しておけばいい気がします。実際そのようにできます。
+<ul>
+<li>\(w = g(u)\) という座標変換をすると点 \(u\) の周りの微小体積は \(u\) におけるヤコビ行列の絶対値 \(|g'(u)|\) 倍に引きのばされます（重積分の変数変換）。なので，確率の釣り合いより，帰省先での事前分布の密度 \(\varphi_u(u)\) は \(\varphi(w)\) と以下の関係があります（\(g\) が単射のときのイメージです）。
+\[\varphi_u (u) du = \varphi(w)|g'(u)| du = \varphi \bigl( g(u) \bigr)|g'(u)| du \]
+ただこれだと，\(\varphi \bigl( g(u) \bigr)\) の形がよくわかりません。そこで実は，\(K(w)\) に特異点解消定理を適用するときに，\(\varphi(w)\) と同時に特異点を解消することができます（96ページ）。するとこうなります。
+\[\varphi_u (u) du = |u^h| b(u) du\]
+</li>
+</ul>
+</li>
+<li>まとめると，帰省先では事後分布は以下に比例します。
+\[ p_u(u|X^n) \propto \exp \bigl( - n \beta u^{2k} + \sqrt{n} \beta u^k \xi_n(u)\bigr) |u^h| b(u) \]
+</li>
+</ul>
+</li>
+<li>正則でない場合にも事後分布がかけたのはいいんですが，ただこれは正規分布っぽさはありますが正規分布ではないのでどんな分布なのかよくわかりません。やりたいことは事後分布上での平均誤差 \(K(w)\) の期待値を求めたり，対数尤度比 \(f(X, w)\) の分散を求めたりすることでした。この積分ができればいいです。</li>
+<ul>
+<li>平均誤差は特異点解消により \(u\) の関数としては \(K(g(u)) = u^{2k}\) となっていました。</li>
+<li>対数尤度比は実は \(f(X, g(u)) = \sqrt{u^{2k}} a(x, u)\) とかけます（補題20）。</li>
+<li>これらとさっきの事後分布をみると \(u^{2k}\) が出てきます。\(t = u^{2k}\) と変数変換できれば，部分積分で期待値や分散が求められそうです（被積分関数が多項式と指数関数の積の形になるので）。変数を \(w\) から \(u\) に変換するのは特異点解消定理がよしなにやってくれたんですが，\(u\) から \(t\) に変換するのはこちらでちゃんとやらないといけないです。変数を変換するには，変換先のある微小体積に，変換前のどこの体積が入るのか確かめて，確率の釣り合いが取れるような変換先の密度を求めないといけません。\(t = u^{2k}\) は単射ではないので，変換先のある微小体積には複数の微小体積が集まってくることになります。それらを考慮した点 \(t\) での密度（デルタ関数を用いて表現すると \(\delta(t - u^{2k})\) に他なりません）を \(t\) の関数でかきくださなければなりません。頑張ってかきくだすと以下のようになります（定理8）。
+\[\delta(t - u^{2k}) |u^h| b(u) du  = t^{\lambda - 1}(- \log t)^{m-1} du^\ast + \mathcal{o} \bigr(t^{\lambda - 1}(- \log t)^{m-1} \bigr)\]
+</li>
+</ul>
+これで正則でない場合の事後分布上での期待値や分散をとる準備ができました。4章後半に続きます。
+</ul>
+
+<h2 id="chap4_contents">4章前半のノート</h2>
+
+<h3 id="chap4_contents_1">STEP1. 平均誤差が標準形になるようにパラメータを変換する</h3>
+
+<div style="border-radius: 0.5em; margin: 0.4em 0 0.7em; padding: 0.5em 0.7em; background:#edde7b; font-size:88%">書き途中です。</div>
+
+パラメータ空間 \(W\) の方を歪めることで平均誤差 \(K(w)\) を標準形にしたいです。まず，パラメータの帰省先 \(\mathcal{M}\) を用意したいと思います。\(\mathcal{M}\) は集合です。どんな構造をした集合にすべきかということになりますが，さすがに各点の周りに座標（つまり，帰省先でのパラメータの姿）はほしいです。ただの集合だと「この点の周り」という概念がないので，まず位相というものを入れます。
+
+<div class="box"><div class="name">定義（開集合系，位相空間）</div>集合 \(\mathcal{M}\) の部分集合族 \(\mathcal{O}\) が以下の3つの条件を満たすとき， \(\mathcal{O}\) は \(\mathcal{M}\) の<b>開集合系</b>であるという。
+<ol>
+  <li>\( \emptyset, \, \mathcal{M} \in \mathcal{O} \)</li>
+  <li>\( O_1, \, O_2 \in \mathcal{O} \Rightarrow O_1 \cap O_2 \in \mathcal{O} \)</li>
+  <li>任意の集合 \(\Lambda\) に対し，各元 \(\lambda \in \Lambda\) から \(\mathcal{O}\) の元 \(O_\lambda\) への対応を与えたとき，\(\bigcup_{\lambda \in \Lambda} O_\lambda \in \mathcal{O} \)</li>
+</ol>
+集合 \(\mathcal{M}\) にある開集合系 \(\mathcal{O}\) が与えられているとき， 集合 \(\mathcal{M}\) を \(\mathcal{O}\) を開集合系とする<b>位相空間</b>といい，\(\mathcal{O}\) を \(\mathcal{M}\) の<b>位相</b>という。また，\(\mathcal{O}\) の元を \(\mathcal{M}\) の<b>開集合</b>という。</div>
+
+次に位相空間 \(\mathcal{M}\) の各点の周り（各点を含む開集合）に \(d\) 次元の座標を割り当てますが，好き勝手な写像で座標を割り当てたらせっかく入れた位相が台無しなので位相が保たれるようにします。つまり，\(\mathcal{M}\) の開集合の像が \(\mathbb{R}^d\) の開集合になり，\(\mathbb{R}^d\) の開集合の逆像も \(\mathcal{M}\) の開集合になるようにします。
+
+<div class="box"><div class="name">定義（連続写像）</div>\(X\)，\(Y\) を位相空間とする。写像 \(f:X \to Y\) に対して，\(Y\) の任意の開集合 \(V\) の逆像 \(f^{-1}(V)\) が \(X\) の開集合であるとき，\(f\) は<b>連続写像</b>であるという。</div>
+
+<div class="box"><div class="name">定義（同相写像）</div>\(X\)，\(Y\) を位相空間とする。写像 \(f:X \to Y\) に対して，\(f\) が全単射で \(f\) も \(f^{-1}\) も連続写像であるとき，\(f\) は<b>同相写像</b>であるという。</div>
+
+<div class="box"><div class="name">定義（座標近傍系）</div>位相空間 \(\mathcal{M}\) の開集合 \(U\) から \(\mathbb{R}^d\) の開集合 \(V\) への写像 \(\phi: U \to V\) が同相写像であるとき，\((U, \phi)\) の対を \(\mathcal{M}\) の<b> \(d\) 次元座標近傍（チャート；地図）</b>という（※）。また，\(d\) 次元座標近傍の族 \(S = \{ (U_\lambda, \phi_\lambda) \}_{\lambda \in \Lambda}\) が \(\bigcup_{\lambda \in \Lambda} U_\lambda = \mathcal{M}\) を満たすとき（※），\(S\) を \(\mathcal{M}\) の<b> \(d\) 次元座標近傍系（アトラス；地図帳）</b>という。
+</div>
+<ul class="kome">
+<li>このとき \(\phi\) を \(U \subset \mathcal{M}\) の<b>局所座標系</b>といい，\(x \in U\) に対して \(\phi(x)\) を<b>局所座標</b>といいます。</li>
+<li>このように \(\{U_\lambda\}_{\lambda \in \Lambda}\) が \(\mathcal{M}\) 全体を覆っているとき，集合族 \(\{U_\lambda\}_{\lambda \in \Lambda}\) は集合 \(\mathcal{M}\) の<b>被覆</b>であるといいます。特に，\(U_\lambda\) が全て開集合である場合は<b>開被覆</b>といいます。</li>
+</ul>
+
+というわけで，パラメータの帰省先の集合 \(\mathcal{M}\) は，位相空間であって \(d\) 次元座標近傍系が定義されているものであってほしい気がします。なお，ハウスドルフ性（後述）をもつ位相空間であって \(d\) 次元座標近傍系が定義されているものを<b>多様体</b>といいます。<br/>
+<ul class="kome">
+<li>単に多様体といったときの定義はお手元の本により異なることがあります。</li>
+</ul>
+多様体なら，局所ごとに自由に座標を割り当てられるので，パラメータを多様体にとばして座標を上手く割り当てれば平均誤差 \(K(w)\) を標準形にすることも実現できそうな気がします。実際，以下のような定理があります。
+
+<div class="box"><div class="name">定理（特異点解消）</div>\(K(w) \geqq 0\) を開集合 \(W \subset \mathbb{R}^d \) 上の非負の値をとる解析関数とし，\(K(w) = 0\) を満たす \(w \in W\) が存在するとする。このとき，ある \(d\) 次元多様体 \(\mathcal{M}\) と解析写像 \(g\) が存在して，\(\mathcal{M}\) の局所座標ごとに（途中）</div>
+
+<h3 id="chap4_contents_2">STEP2. 変換したパラメータ上の事後分布を求める</h3>
+
+<div style="border-radius: 0.5em; margin: 0.4em 0 0.7em; padding: 0.5em 0.7em; background:#edde7b; font-size:88%">書き途中です。</div>
+
+<h3 id="chap4_contents_3">STEP3. 事後分布による期待値をとるためさらに変数変換する</h3>
+
+<div style="border-radius: 0.5em; margin: 0.4em 0 0.7em; padding: 0.5em 0.7em; background:#edde7b; font-size:88%">書き途中です。</div>
+<p>事後分布に対して \(t  = u^{2k}\) という変数変換がしたいです。変換先の点 \(t\) の周りの微小体積には，\(t  = u^{2k}\) を満たす点 \(u\) たちの周りの微小体積が移されるので，そのような点たちにおける密度を抜き出して，変換に伴う微小体積の伸縮を考慮した比で足し合わせたものが変換後の密度になります。</p>
+ここで，他の関数にかけて積分することで，その関数のある点（たち）における値を抜き出すようなはたらきをするものがあります。デルタ関数といいます。デルタ関数といいますが関数ではないです。
+<div class="box"><div class="name">定義（デルタ関数）</div>無限回微分できる任意の関数 \(\varphi(x)\) に対して，以下が成り立つような \(\delta (x)\) をデルタ関数という。
+\[
+\int \delta (x) \varphi(x) dx = \varphi(0)
+\]</div>
+
+<div style="color:#009854">
+<h3 id="dasoku">蛇足</h3>
+<ul>
+<li>力学で，注目している系の全エネルギーを，構成要素の座標と運動量の関数としてかいたものをハミルトン関数といいます。全ての変数を束ねて \(\Gamma\) として，\(H(\Gamma)\) とかくことにします。この系のエネルギー \(E\) が一定に保たれているとすると，この系がとりうる状態 \(\Gamma\) は \(H(\Gamma)=E\) を満たします。そんな風に，系の構成要素が何か運動するとき，状態 \(\Gamma\) がどんなルールを満たすかを取り扱うのが力学です。ただ「\(\Gamma\) はこの式を満たします」だけだと，たくさんの構成要素からなる系が全体としてどんな性質を帯びているかを考えにくいです。</li>
+<li>ので，統計力学では，たくさんの構成要素からなる系の状態 \(\Gamma\) がどう分布するかを取り扱います。
+<ul><li>例えば，エネルギー \(E\) が一定に保たれている系（ミクロカノニカルアンサンブルといいます）をある一定の長時間観察することにします。状態 \(\Gamma\) が観察される確率密度 \(P(\Gamma)\) というものを考えたいです。まず，\(H(\Gamma)=E\) を満たさない \(\Gamma\) が観察されることはないです。なのでそういう \(\Gamma\) は \(P(\Gamma) = 0\) でいいです。他方，\(H(\Gamma)=E\) を満たす \(\Gamma\) であれば観察されうります。\(\Gamma\) の空間内の曲線 \(H(\Gamma)=E\) 上の点はすべて観察されうるとなると，この曲線上の確率密度をどうするべきかとなりますが，「曲線上の点は全部同じ確率密度でいいや」と仮定します（等重率の原理； 等重率の原理が成り立つことを証明できる系もありますが，一般には証明できないので仮定とかきました）。「\(H(\Gamma)=E\) を満たす \(\Gamma\) のみが実現し，複数あればどれも等しい確率で実現する」ような確率密度は
+\[P(\Gamma) \propto \delta \bigl(E - H(\Gamma) \bigr)\]
+に他ならないです（ミクロカノニカル分布）。これを用いると，この系において \(F(\Gamma)\) という量が平均的にどんな値になるかを以下によって求めることができます。
+\[\langle F \rangle = \frac{\int F(\Gamma) \delta \bigl(E - H(\Gamma) \bigr) d \Gamma}{\int \delta \bigl(E - H(\Gamma) \bigr) d \Gamma}\]
+この分母を \(W(E)\) とかいて状態密度とよびます。これは正規化定数です。\(W(E)\) は \(H(\Gamma)=E\) を満たす \(\Gamma\) において \(H(\Gamma)\) の傾きが急なら小さくなるし，緩やかなら大きくなるし，\(H(\Gamma)=E\) を満たす \(\Gamma\) が複数あれば足し合わされて大きくなります。\(W(E)\) が大きい \(E\) の周辺では系が色々な状態をとりえるといったイメージです。ちなみに，状態密度の対数をエントロピーとよびます。
+\[S(E) = k_B \log W(E)\]
+</li>
+<li>系のエネルギーではなく温度 \(T\) が一定に保たれている場合（カノニカルアンサンブルといいます）は，確率密度は以下になります（カノニカル分布）。
+\[ P(\Gamma) = \frac{ \exp \bigl( -H(\Gamma) / (k_B T) \bigr) }{\int \exp \bigl( -H(\Gamma) / (k_B T) \bigr) d \Gamma} \]
+この分母の正規化定数を \(Z(T)\) とかいて分配関数とよびます。この積分は状態密度を用いて \(E\) の積分にすることもできます。
+\[ Z(T) = \int \left( \int \delta \bigl(E - H(\Gamma) \bigr) dE \right) \exp \left( - \frac{H(\Gamma)}{k_B T} \right) d \Gamma = \int W(E) \exp \left( - \frac{E}{k_B T} \right)  dE \]
+状態密度はエネルギー \(E\) を固定した系で状態 \(\Gamma\) がどれだけ密集しているかだったので，状態 \(\Gamma\) の積分をエネルギー \(E\) の積分にするときはその濃さを掛け算しないといけないといった感じです。この被積分関数はある \(E\) でピークをもちます。ちなみに，分配関数の対数をとって温度をかけたものを自由エネルギーとよびます。
+\[ F(T) = -k_B T \log \bigl( Z(T) \bigr) \]
+ちなみに，よく \(\beta = 1/ (k_B T)\) と置き換えをします。
+<!--
+\[= \int \left( \int \delta \bigl(E - H(\Gamma) \bigr) \exp \left( - \frac{H(\Gamma)}{k_B T} \right)  dE \right)  d \Gamma \]
+\[ \qquad \quad = \int \left( \int \delta \bigl(E - H(\Gamma) \bigr) \exp \left( - \frac{E}{k_B T} \right)  dE \right)  d \Gamma = \int \left( \int \delta \bigl(E - H(\Gamma) \bigr) d \Gamma \right) \exp \left( - \frac{E}{k_B T} \right)  dE \]
+-->
+</li>
+</ul>
+
+</ul>
+<br/>
+<ul>
+<li>他方，ベイズ統計の一般理論では帰省先パラメータ \(u\) の空間上の事後分布を取り扱いたいです。これがベイズ統計におけるカノニカル分布です。\(n \to \infty\) でピークは \(u = 0\) です。この正規化定数が分配関数です。
+\[ p_u(u|X^n) \propto \exp \bigl( - n \beta u^{2k} + \sqrt{n} \beta u^k \xi_n(u)\bigr) |u^h| b(u) \]
+これに対して以下が状態密度として出てきました。
+\[ \delta ( t - n u^{2k}) |u^h| b(u) du\]
+統計力学と見比べると，\(n u^{2k}\) が系のエネルギーのようです。
+</li>
+</ul>
+
+<br/>
+</body>
+</html>
