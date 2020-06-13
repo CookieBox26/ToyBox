@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398;-seq2seq-&#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch-&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;&#8213;-&#21069;&#32232;&#65306;&#12514;&#12487;&#12523;&#12398;&#35347;&#32244;&#12414;&#12391;">&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398; seq2seq &#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;&#8213; &#21069;&#32232;&#65306;&#12514;&#12487;&#12523;&#12398;&#35347;&#32244;&#12414;&#12391;<a class="anchor-link" href="#&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398;-seq2seq-&#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch-&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;&#8213;-&#21069;&#32232;&#65306;&#12514;&#12487;&#12523;&#12398;&#35347;&#32244;&#12414;&#12391;">&#182;</a></h1><p>参考文献の 1 つ目のチュートリアルをやります。コードの順序を前後させていたりデバッグプリントを入れていることがあります。自分の誤りは自分に帰属します。何か問題がありましたら以下からご連絡いただけますと幸いです。<br>
+<h1 id="&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398;-seq2seq-&#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch-&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;">&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398; seq2seq &#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;<a class="anchor-link" href="#&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398;-seq2seq-&#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch-&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;">&#182;</a></h1><p>参考文献の 1 つ目のチュートリアルをやります。コードの順序を前後させていたりデバッグプリントを入れていることがあります。自分の誤りは自分に帰属します。何か問題がありましたら以下からご連絡いただけますと幸いです。<br>
 <a href="https://github.com/CookieBox26/ToyBox/issues">https://github.com/CookieBox26/ToyBox/issues</a></p>
 <h3 id="&#21442;&#32771;&#25991;&#29486;">&#21442;&#32771;&#25991;&#29486;<a class="anchor-link" href="#&#21442;&#32771;&#25991;&#29486;">&#182;</a></h3><ul>
 <li><a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html">NLP FROM SCRATCH: TRANSLATION WITH A SEQUENCE TO SEQUENCE NETWORK AND ATTENTION</a><ul>
@@ -13107,6 +13107,7 @@ div#notebook {
     <li><a href="#s2">seq2seq モデル</a></li>
     <li><a href="#s3">アテンションデコーダの導入</a></li>
     <li><a href="#s4">モデルの訓練</a></li>
+    <li><a href="#s5">訓練結果</a></li>
 </ul>
 </div>
 </div>
@@ -14397,7 +14398,7 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.1992, -0.0385,  0.01
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -14502,6 +14503,10 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.1992, -0.0385,  0.01
 38m 28s (- 25m 38s) (45000 60%) 0.9749
 42m 51s (- 21m 25s) (50000 66%) 0.8662
 47m 14s (- 17m 10s) (55000 73%) 0.7999
+51m 36s (- 12m 54s) (60000 80%) 0.7315
+55m 59s (- 8m 36s) (65000 86%) 0.6750
+60m 23s (- 4m 18s) (70000 93%) 0.5829
+64m 46s (- 0m 0s) (75000 100%) 0.5642
 </pre>
 </div>
 </div>
@@ -14513,7 +14518,126 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.1992, -0.0385,  0.01
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>（つづいたら）つづく</p>
+<h2 id="s5" style="background: black; padding: 0.7em 1em 0.5em;color:white;">訓練結果</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">encoder</span><span class="p">,</span> <span class="n">decoder</span><span class="p">,</span> <span class="n">sentence</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="n">MAX_LENGTH</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">input_tensor</span> <span class="o">=</span> <span class="n">tensorFromSentence</span><span class="p">(</span><span class="n">input_lang</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
+        <span class="n">input_length</span> <span class="o">=</span> <span class="n">input_tensor</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">encoder_hidden</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">initHidden</span><span class="p">()</span>
+        <span class="n">encoder_outputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_length</span><span class="p">,</span> <span class="n">encoder</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">ei</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">input_length</span><span class="p">):</span>
+            <span class="n">encoder_output</span><span class="p">,</span> <span class="n">encoder_hidden</span> <span class="o">=</span> <span class="n">encoder</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">[</span><span class="n">ei</span><span class="p">],</span> <span class="n">encoder_hidden</span><span class="p">)</span>
+            <span class="n">encoder_outputs</span><span class="p">[</span><span class="n">ei</span><span class="p">]</span> <span class="o">+=</span> <span class="n">encoder_output</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">decoder_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="n">SOS_token</span><span class="p">]],</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>  <span class="c1"># SOS</span>
+        <span class="n">decoder_hidden</span> <span class="o">=</span> <span class="n">encoder_hidden</span>
+        <span class="n">decoded_words</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">decoder_attentions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_length</span><span class="p">,</span> <span class="n">max_length</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">di</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_length</span><span class="p">):</span>
+            <span class="n">decoder_output</span><span class="p">,</span> <span class="n">decoder_hidden</span><span class="p">,</span> <span class="n">decoder_attention</span> <span class="o">=</span> <span class="n">decoder</span><span class="p">(</span>
+                <span class="n">decoder_input</span><span class="p">,</span> <span class="n">decoder_hidden</span><span class="p">,</span> <span class="n">encoder_outputs</span><span class="p">)</span>
+            <span class="n">decoder_attentions</span><span class="p">[</span><span class="n">di</span><span class="p">]</span> <span class="o">=</span> <span class="n">decoder_attention</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">topv</span><span class="p">,</span> <span class="n">topi</span> <span class="o">=</span> <span class="n">decoder_output</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">topi</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="n">EOS_token</span><span class="p">:</span>
+                <span class="n">decoded_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&lt;EOS&gt;&#39;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">decoded_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output_lang</span><span class="o">.</span><span class="n">index2word</span><span class="p">[</span><span class="n">topi</span><span class="o">.</span><span class="n">item</span><span class="p">()])</span>
+            <span class="n">decoder_input</span> <span class="o">=</span> <span class="n">topi</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">decoded_words</span><span class="p">,</span> <span class="n">decoder_attentions</span><span class="p">[:</span><span class="n">di</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">evaluateRandomly</span><span class="p">(</span><span class="n">encoder</span><span class="p">,</span> <span class="n">decoder</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">pair</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">output_words</span><span class="p">,</span> <span class="n">attentions</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">encoder</span><span class="p">,</span> <span class="n">decoder</span><span class="p">,</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">output_sentence</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_words</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span> <span class="n">output_sentence</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+
+<span class="n">evaluateRandomly</span><span class="p">(</span><span class="n">encoder1</span><span class="p">,</span> <span class="n">attn_decoder1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&gt; je ne parie plus .
+= i m not gambling anymore .
+&lt; i m not gambling anymore . &lt;EOS&gt;
+
+&gt; vous etes un enfant bizarre .
+= you re a weird kid .
+&lt; you re a weird kid . &lt;EOS&gt;
+
+&gt; tu n es pas differente .
+= you re no different .
+&lt; you re no different . &lt;EOS&gt;
+
+&gt; nous ne sommes pas apparentes .
+= we re unrelated .
+&lt; we aren t related to each . &lt;EOS&gt;
+
+&gt; vous etes soucieux n est ce pas ?
+= you re worried aren t you ?
+&lt; you re worried aren t you ? &lt;EOS&gt;
+
+&gt; c est une fille mais elle est brave .
+= she s a girl but she s brave .
+&lt; she is a brave but she is . &lt;EOS&gt;
+
+&gt; je ne vais pas vous le repeter .
+= i m not going to tell you again .
+&lt; i m not going to tell you again . &lt;EOS&gt;
+
+&gt; elle s interesse beaucoup a la musique .
+= she s very interested in music .
+&lt; she is interested interested in music . &lt;EOS&gt;
+
+&gt; elle est active .
+= she is active .
+&lt; she is innocent . &lt;EOS&gt;
+
+&gt; nous subissons un coup de tabac .
+= we re having a blast .
+&lt; we re having a blast . &lt;EOS&gt;
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>おわり</p>
 
 </div>
 </div>
