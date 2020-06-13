@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398;-seq2seq-&#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch-&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;">&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398; seq2seq &#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;<a class="anchor-link" href="#&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398;-seq2seq-&#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch-&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;">&#182;</a></h1><p>参考文献の 1 つ目のチュートリアルをやります。コードの順序を前後させていたりデバッグプリントを入れていることがあります。自分の誤りは自分に帰属します。何か問題がありましたら以下からご連絡いただけますと幸いです。<br>
+<h1 id="&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398;-seq2seq-&#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch-&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;&#8213;-&#21069;&#32232;&#65306;&#12514;&#12487;&#12523;&#12398;&#35347;&#32244;&#12414;&#12391;">&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398; seq2seq &#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch &#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;&#8213; &#21069;&#32232;&#65306;&#12514;&#12487;&#12523;&#12398;&#35347;&#32244;&#12414;&#12391;<a class="anchor-link" href="#&#12450;&#12486;&#12531;&#12471;&#12519;&#12531;&#27231;&#27083;&#20184;&#12365;&#12398;-seq2seq-&#12514;&#12487;&#12523;&#12391;&#27231;&#26800;&#32763;&#35379;&#12377;&#12427;&#65288;PyTorch-&#12481;&#12517;&#12540;&#12488;&#12522;&#12450;&#12523;&#65289;&#8213;-&#21069;&#32232;&#65306;&#12514;&#12487;&#12523;&#12398;&#35347;&#32244;&#12414;&#12391;">&#182;</a></h1><p>参考文献の 1 つ目のチュートリアルをやります。コードの順序を前後させていたりデバッグプリントを入れていることがあります。自分の誤りは自分に帰属します。何か問題がありましたら以下からご連絡いただけますと幸いです。<br>
 <a href="https://github.com/CookieBox26/ToyBox/issues">https://github.com/CookieBox26/ToyBox/issues</a></p>
 <h3 id="&#21442;&#32771;&#25991;&#29486;">&#21442;&#32771;&#25991;&#29486;<a class="anchor-link" href="#&#21442;&#32771;&#25991;&#29486;">&#182;</a></h3><ul>
 <li><a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html">NLP FROM SCRATCH: TRANSLATION WITH A SEQUENCE TO SEQUENCE NETWORK AND ATTENTION</a><ul>
@@ -13808,7 +13808,7 @@ out.bias       torch.Size([2803])
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;◆ エンコーダに1つ目のデータを流してみる&#39;</span><span class="p">)</span>
@@ -13862,75 +13862,75 @@ tensor([[2],
 ◇ 流す単語： j
 入力単語：  torch.Size([1]) tensor([2])
 入力特徴：  torch.Size([1, 1, 256]) tensor([[[0., 0., 0.]]])
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-0.9144, -2.8343,  1.0500]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.1686, -0.0436,  0.2566]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.1686, -0.0436,  0.2566]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-0.2381,  0.6879,  0.1857]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.3185, -0.1559, -0.1839]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.3185, -0.1559, -0.1839]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ 流す単語： ai
 入力単語：  torch.Size([1]) tensor([3])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.1686, -0.0436,  0.2566]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[0.9280, 0.1643, 1.3251]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.1462, -0.0557,  0.4820]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.1462, -0.0557,  0.4820]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.3185, -0.1559, -0.1839]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[ 0.5914, -0.8106, -0.6742]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.4077,  0.1219, -0.1297]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.4077,  0.1219, -0.1297]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ 流す単語： ans
 入力単語：  torch.Size([1]) tensor([4])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.1462, -0.0557,  0.4820]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-0.0716,  0.1713,  1.0994]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.0405, -0.4834,  0.3962]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0405, -0.4834,  0.3962]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.4077,  0.1219, -0.1297]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-0.6314,  0.4169, -0.2895]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.3944, -0.2218, -0.0295]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.3944, -0.2218, -0.0295]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ 流す単語： .
 入力単語：  torch.Size([1]) tensor([5])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.0405, -0.4834,  0.3962]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[ 0.3769, -1.5796,  0.2272]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.2726, -0.1521,  0.2091]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.2726, -0.1521,  0.2091]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.3944, -0.2218, -0.0295]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[ 0.4187, -0.6033, -1.7557]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.1769, -0.1111, -0.0718]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.1769, -0.1111, -0.0718]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ 流す単語： &lt;EOS&gt;
 入力単語：  torch.Size([1]) tensor([1])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.2726, -0.1521,  0.2091]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[1.1828, 1.6223, 3.0366]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.3834, -0.1740,  0.0852]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.3834, -0.1740,  0.0852]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.1769, -0.1111, -0.0718]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-1.2049,  1.1518,  0.2472]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.1259, -0.0538, -0.2573]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.1259, -0.0538, -0.2573]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ コンテクストベクトル
-torch.Size([1, 1, 256]) tensor([[[ 0.3834, -0.1740,  0.0852,  0.1780]]], grad_fn=&lt;SliceBackward&gt;)
+torch.Size([1, 1, 256]) tensor([[[-0.1259, -0.0538, -0.2573,  0.0718]]], grad_fn=&lt;SliceBackward&gt;)
 
 
 ◆ コンテクストベクトルをデコードしてみる
 
 ◇ 1単語目を取り出す
 入力単語：  torch.Size([1, 1]) tensor([[0]])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.3834, -0.1740,  0.0852]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.0321,  0.0106, -0.0106]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0321,  0.0106, -0.0106]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.1259, -0.0538, -0.2573]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.0097, -0.0994, -0.2623]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0097, -0.0994, -0.2623]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
-最終出力 　　：  torch.Size([1, 2803]) tensor([[-7.9968, -8.4756, -7.9322]], grad_fn=&lt;SliceBackward&gt;)
-デコード結果： 2709 --&gt; latest
+最終出力 　　：  torch.Size([1, 2803]) tensor([[-7.8982, -8.0505, -8.1565]], grad_fn=&lt;SliceBackward&gt;)
+デコード結果： 92 --&gt; eating
 
 ◇ 2単語目を取り出す
-入力単語：  torch.Size([]) tensor(2709)
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.0321,  0.0106, -0.0106]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.0759,  0.2227,  0.0081]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0759,  0.2227,  0.0081]]], grad_fn=&lt;SliceBackward&gt;)
+入力単語：  torch.Size([]) tensor(92)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.0097, -0.0994, -0.2623]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.0992, -0.0060, -0.0890]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0992, -0.0060, -0.0890]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
-最終出力 　　：  torch.Size([1, 2803]) tensor([[-7.9906, -8.1868, -8.0231]], grad_fn=&lt;SliceBackward&gt;)
-デコード結果： 1999 --&gt; talents
+最終出力 　　：  torch.Size([1, 2803]) tensor([[-8.0773, -7.9362, -8.0983]], grad_fn=&lt;SliceBackward&gt;)
+デコード結果： 92 --&gt; eating
 
 ◇ 3単語目を取り出す
-入力単語：  torch.Size([]) tensor(1999)
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.0759,  0.2227,  0.0081]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.0518,  0.2743, -0.1833]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0518,  0.2743, -0.1833]]], grad_fn=&lt;SliceBackward&gt;)
+入力単語：  torch.Size([]) tensor(92)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.0992, -0.0060, -0.0890]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.1483, -0.0212, -0.0282]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.1483, -0.0212, -0.0282]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
-最終出力 　　：  torch.Size([1, 2803]) tensor([[-7.9844, -8.0622, -8.0206]], grad_fn=&lt;SliceBackward&gt;)
-デコード結果： 1367 --&gt; sides
+最終出力 　　：  torch.Size([1, 2803]) tensor([[-8.1838, -7.8830, -8.0626]], grad_fn=&lt;SliceBackward&gt;)
+デコード結果： 328 --&gt; silly
 </pre>
 </div>
 </div>
@@ -13979,12 +13979,12 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0518,  0.2743, -0.18
 </tr>
 <tr>
 <td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/1.png"></td>
-<td style="vertical-align:top;text-align:left;">ええ…負担が大きいなら最初からそうすればよかったじゃないですか。…毎ステップの出力をすべてデコーダに突っ込むなら、もう GRU で再帰させなくてもいいのでは？
+<td style="vertical-align:top;text-align:left;">ええ…負担が大きいなら最初からそうすればよかったじゃないですか。…毎ステップの出力をすべてデコーダに突っ込むなら、もう GRU で再帰させなくてもいいのでは？ 単に個々の単語をエンコードしてデコーダに渡せばいいでしょう？
 </td>
 </tr>
 <tr>
 <td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/2.png"></td>
-<td style="vertical-align:top;text-align:left;">それは違うと思うかな。ある単語がどんな意味的な特徴をもつかは、やっぱり文脈に依存するよ。だから、GRU で再帰させながら各ステップの特徴をつくるのは理に適っていると思う。無論、ニューラルネットはどんな関数も表現してくれることが期待されるけど、だからといって各単語をばらばらにエンコードしたものをデコーダに丸投げじゃそれこそデコーダの負担が大きすぎると思うよ。
+<td style="vertical-align:top;text-align:left;">それは違うと思うかな。ある単語がどんな意味的な特徴をもつかは、やっぱり文脈に依存するよ。だから、単語を個別にエンコードするんじゃなくて、GRU で再帰させながら各ステップの特徴をつくるのは理に適っていると思う（このチュートリアルでは一方向だけど、逆方向からも再帰させたくなってくるね）。無論、ニューラルネットはどんな関数も表現してくれることが期待されるけど、だからといって各単語をばらばらにエンコードしたものをデコーダに丸投げじゃそれこそデコーダの負担が大きすぎると思うよ。
 </td>
 </tr>
 <tr>
@@ -13999,12 +13999,22 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0518,  0.2743, -0.18
 </tr>
 <tr>
 <td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/1.png"></td>
-<td style="vertical-align:top;text-align:left;">なるほど…わかりましたよ！ アテンションがうれしいのは、フランス語も英語も人間の自然言語だからですね？ だって、フランス語を宇宙語に翻訳するのだったら、言葉の体系が違いすぎて、フランス語の何単語目に対応するかなんていうのが意味を成さないです。そのような場合は、やはり常に全てのステップの特徴を利用した方がいいでしょう？
+<td style="vertical-align:top;text-align:left;">なるほど…わかりましたよ！ アテンションがうれしいのは、フランス語も英語も人間の自然言語だからですね？ だって、フランス語を宇宙語に翻訳するのだったら、言葉の体系が違いすぎて、フランス語の何単語目に対応するかなんていうのが意味を成さないかもしれません。そのような場合は、やはり常に全てのステップの特徴を利用した方がいいでしょう？
 </td>
 </tr>
 <tr>
 <td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/2.png"></td>
-<td style="vertical-align:top;text-align:left;">え、うん…そこまで概念が違う宇宙人だったら翻訳という行為が成立するのかもあやしいんじゃないかな…。
+<td style="vertical-align:top;text-align:left;">え、うん…そこまで概念が違う宇宙人の言葉だったら翻訳という行為が意味を成すのかもあやしいんじゃないかな…。
+</td>
+</tr>
+<tr>
+<td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/1.png"></td>
+<td style="vertical-align:top;text-align:left;">下図でいうと、いま何番目の単語に注意すべきかが「アテンションの重み」ですね。もしこのベクトル第1成分と第3成分が大きくなっていたら元の文章の1ステップ目と3ステップ目の特徴に注意せよということですか。それでその重みにしたがって特徴を抜き出して、それをここでは attn_combine と名付けた層で前回デコードした単語の表現に混ぜ込んでいますね？ …これ、attn_combine せずに抜き出した特徴をそのまま GRU に突っ込むのでは駄目なんですか？ GRU は結局「前回デコードした単語」「元文章の注目すべき位置の特徴」「現在未デコードのコンテクスト」を受け取って出力する特徴をつくるのでしょう？ attn_combine しなくても同じであるように思うんですが。
+</td>
+</tr>
+<tr>
+<td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/2.png"></td>
+<td style="vertical-align:top;text-align:left;">attn_combine した上で活性化しているからモデルとして等価じゃないよ。…そうだな、これは全くあやしいイメージだけど、「前回デコードした単語」が「水」だったとして、「水」はいま「飲むもの」という特徴と「浴びるもの」という特徴をもっているとするよ。それで、「元文章の注目すべき位置の特徴」が、「飲み食いする」という特徴をもっているとする。このとき、「水」の「飲むもの」という特徴の方だけを活性化した状態で GRU に流したいんじゃないかな。
 </td>
 </tr>
 </table>
@@ -14037,7 +14047,7 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0518,  0.2743, -0.18
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
@@ -14073,17 +14083,19 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0518,  0.2743, -0.18
             <span class="bp">self</span><span class="o">.</span><span class="n">attn</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">embedded</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">hidden</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;アテンションの重み： &#39;</span><span class="p">,</span> <span class="n">attn_weights</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">attn_weights</span><span class="p">[:,:</span><span class="mi">3</span><span class="p">])</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">attn_weights</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">encoder_outputs</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;アテンションを整形： &#39;</span><span class="p">,</span> <span class="n">attn_weights</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;エンコーダの全ステップの特徴を整形： &#39;</span><span class="p">,</span> <span class="n">encoder_outputs</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
         <span class="n">attn_applied</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">attn_weights</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
                                  <span class="n">encoder_outputs</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;中間特徴： &#39;</span><span class="p">,</span> <span class="n">attn_applied</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">attn_applied</span><span class="p">[:,:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;アテンション適用後特徴： &#39;</span><span class="p">,</span> <span class="n">attn_applied</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">attn_applied</span><span class="p">[:,:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span>
 
         <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">embedded</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">attn_applied</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attn_combine</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
         <span class="n">output</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;中間特徴： &#39;</span><span class="p">,</span> <span class="n">attn_applied</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">attn_applied</span><span class="p">[:,:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+        
         <span class="n">output</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gru</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">hidden</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;GRUの出力　　： &#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">output</span><span class="p">[:,:,:</span><span class="mi">3</span><span class="p">])</span>
@@ -14095,10 +14107,12 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0518,  0.2743, -0.18
 
     <span class="k">def</span> <span class="nf">initHidden</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
-    
+
+
 <span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">256</span>
 <span class="k">del</span> <span class="n">decoder</span>
 <span class="n">decoder</span> <span class="o">=</span> <span class="n">AttnDecoderRNN</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_lang</span><span class="o">.</span><span class="n">n_words</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">◆ アテンションデコーダの訓練対象パラメータ&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">decoder</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
@@ -14171,42 +14185,42 @@ tensor([[2],
 
 ◇ 流す単語： j
 入力単語：  torch.Size([1]) tensor([2])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[0.1430, 0.1162, 0.1017]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-0.9144, -2.8343,  1.0500]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[0.2510, 0.0173, 0.2812]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[0.2510, 0.0173, 0.2812]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.1483, -0.0212, -0.0282]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-0.2381,  0.6879,  0.1857]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.4188, -0.2381, -0.2123]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.4188, -0.2381, -0.2123]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ 流す単語： ai
 入力単語：  torch.Size([1]) tensor([3])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[0.2510, 0.0173, 0.2812]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[0.9280, 0.1643, 1.3251]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.1868, -0.0260,  0.4985]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.1868, -0.0260,  0.4985]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.4188, -0.2381, -0.2123]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[ 0.5914, -0.8106, -0.6742]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.4925,  0.0883, -0.1541]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.4925,  0.0883, -0.1541]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ 流す単語： ans
 入力単語：  torch.Size([1]) tensor([4])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.1868, -0.0260,  0.4985]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-0.0716,  0.1713,  1.0994]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.0174, -0.4824,  0.4045]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.0174, -0.4824,  0.4045]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.4925,  0.0883, -0.1541]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-0.6314,  0.4169, -0.2895]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.4707, -0.2606, -0.0530]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.4707, -0.2606, -0.0530]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ 流す単語： .
 入力単語：  torch.Size([1]) tensor([5])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.0174, -0.4824,  0.4045]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[ 0.3769, -1.5796,  0.2272]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.2853, -0.1546,  0.2135]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.2853, -0.1546,  0.2135]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.4707, -0.2606, -0.0530]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[ 0.4187, -0.6033, -1.7557]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.2374, -0.1354, -0.0884]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.2374, -0.1354, -0.0884]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ 流す単語： &lt;EOS&gt;
 入力単語：  torch.Size([1]) tensor([1])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.2853, -0.1546,  0.2135]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[1.1828, 1.6223, 3.0366]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.3939, -0.1769,  0.0863]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.3939, -0.1769,  0.0863]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.2374, -0.1354, -0.0884]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-1.2049,  1.1518,  0.2472]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[-0.1727, -0.0660, -0.2649]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[-0.1727, -0.0660, -0.2649]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
 
 ◇ 特徴ベクトル（全ステップ分）
@@ -14217,42 +14231,45 @@ torch.Size([10, 256])
 
 ◇ 1単語目を取り出す
 入力単語：  torch.Size([1, 1]) tensor([[0]])
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.3939, -0.1769,  0.0863]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[0.4585, 0.5734, -0.0000]]], grad_fn=&lt;SliceBackward&gt;)
-アテンションの重み：  torch.Size([1, 10]) tensor([[0.1180, 0.0728, 0.1173]], grad_fn=&lt;SliceBackward&gt;)
-torch.Size([1, 1, 10])
-torch.Size([1, 10, 256])
-中間特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.0837, -0.0772,  0.1356]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.1267, -0.0728, -0.0258]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.1267, -0.0728, -0.0258]]], grad_fn=&lt;SliceBackward&gt;)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[-0.1727, -0.0660, -0.2649]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-1.0828, -0.5307, -1.1126]]], grad_fn=&lt;SliceBackward&gt;)
+アテンションの重み：  torch.Size([1, 10]) tensor([[0.0991, 0.1807, 0.1001]], grad_fn=&lt;SliceBackward&gt;)
+アテンションを整形：  torch.Size([1, 1, 10])
+エンコーダの全ステップの特徴を整形：  torch.Size([1, 10, 256])
+アテンション適用後特徴：  torch.Size([1, 1, 256]) tensor([[[-0.2225, -0.0557, -0.0934]]], grad_fn=&lt;SliceBackward&gt;)
+中間特徴：  torch.Size([1, 1, 256]) tensor([[[-0.2225, -0.0557, -0.0934]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.0072,  0.0409, -0.0917]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0072,  0.0409, -0.0917]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
-デコード結果： 1355 --&gt; ever
+デコード結果： 2169 --&gt; savvy
 
 ◇ 2単語目を取り出す
-入力単語：  torch.Size([]) tensor(1355)
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.1267, -0.0728, -0.0258]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-1.9934, -0.8500, -1.0736]]], grad_fn=&lt;SliceBackward&gt;)
-アテンションの重み：  torch.Size([1, 10]) tensor([[0.1833, 0.1232, 0.0673]], grad_fn=&lt;SliceBackward&gt;)
-torch.Size([1, 1, 10])
-torch.Size([1, 10, 256])
-中間特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.1265, -0.0612,  0.1666]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.0556, -0.0184,  0.1266]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0556, -0.0184,  0.1266]]], grad_fn=&lt;SliceBackward&gt;)
+入力単語：  torch.Size([]) tensor(2169)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.0072,  0.0409, -0.0917]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[ 0.5694,  0.5553, -0.9307]]], grad_fn=&lt;SliceBackward&gt;)
+アテンションの重み：  torch.Size([1, 10]) tensor([[0.1231, 0.1040, 0.0444]], grad_fn=&lt;SliceBackward&gt;)
+アテンションを整形：  torch.Size([1, 1, 10])
+エンコーダの全ステップの特徴を整形：  torch.Size([1, 10, 256])
+アテンション適用後特徴：  torch.Size([1, 1, 256]) tensor([[[-0.1699, -0.0540, -0.0867]]], grad_fn=&lt;SliceBackward&gt;)
+中間特徴：  torch.Size([1, 1, 256]) tensor([[[-0.1699, -0.0540, -0.0867]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.1791, -0.0045, -0.0418]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.1791, -0.0045, -0.0418]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
-デコード結果： 2763 --&gt; particularily
+デコード結果： 777 --&gt; england
 
 ◇ 3単語目を取り出す
-入力単語：  torch.Size([]) tensor(2763)
-入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.0556, -0.0184,  0.1266]]], grad_fn=&lt;SliceBackward&gt;)
-埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-1.4186, -1.6414,  1.3292]]], grad_fn=&lt;SliceBackward&gt;)
-アテンションの重み：  torch.Size([1, 10]) tensor([[0.1418, 0.0311, 0.1849]], grad_fn=&lt;SliceBackward&gt;)
-torch.Size([1, 1, 10])
-torch.Size([1, 10, 256])
-中間特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.1094, -0.1217,  0.1578]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.0614, -0.0580,  0.1608]]], grad_fn=&lt;SliceBackward&gt;)
-GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0614, -0.0580,  0.1608]]], grad_fn=&lt;SliceBackward&gt;)
+入力単語：  torch.Size([]) tensor(777)
+入力特徴：  torch.Size([1, 1, 256]) tensor([[[ 0.1791, -0.0045, -0.0418]]], grad_fn=&lt;SliceBackward&gt;)
+埋め込み後　 ：  torch.Size([1, 1, 256]) tensor([[[-2.1672,  1.4506,  0.9751]]], grad_fn=&lt;SliceBackward&gt;)
+アテンションの重み：  torch.Size([1, 10]) tensor([[0.0547, 0.0895, 0.0704]], grad_fn=&lt;SliceBackward&gt;)
+アテンションを整形：  torch.Size([1, 1, 10])
+エンコーダの全ステップの特徴を整形：  torch.Size([1, 10, 256])
+アテンション適用後特徴：  torch.Size([1, 1, 256]) tensor([[[-0.1518, -0.0496, -0.0691]]], grad_fn=&lt;SliceBackward&gt;)
+中間特徴：  torch.Size([1, 1, 256]) tensor([[[-0.1518, -0.0496, -0.0691]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの出力　　：  torch.Size([1, 1, 256]) tensor([[[ 0.1992, -0.0385,  0.0177]]], grad_fn=&lt;SliceBackward&gt;)
+GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.1992, -0.0385,  0.0177]]], grad_fn=&lt;SliceBackward&gt;)
 （単語を1つずつ流しているので出力と隠れ状態は一致）
-デコード結果： 2311 --&gt; flight
+デコード結果： 234 --&gt; english
 </pre>
 </div>
 </div>
@@ -14273,7 +14290,7 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0614, -0.0580,  0.16
 </tr>
 <tr>
 <td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/2.png"></td>
-<td style="vertical-align:top;text-align:left;">損失としては単に各ステップの出力の交差エントロピーを足し上げてるね。あと、訓練時に“Teacher forcing”ということもするみたい。
+<td style="vertical-align:top;text-align:left;">損失としては単に各ステップの出力の交差エントロピー（F.log_softmax + nn.NLLLoss）を足し上げてるね。あと、訓練時に“Teacher forcing”ということもするみたい。
 </td>
 </tr>
 <tr>
@@ -14286,13 +14303,18 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0614, -0.0580,  0.16
 <td style="vertical-align:top;text-align:left;">上のシミュレーションでもやったように、最初はでたらめな単語がデコードされてきちゃうよね。そうするとデコードの2ステップ目以降、前回の単語がでたらめな状態でデコードしていくことになっちゃって、これじゃなかなか学習が進まない。だから、確率的に前回の単語として正解の単語を入れちゃうってことらしい。そうすると収束が速いと。ただ反面、モデルが不安定になりやすいってある。カンニングしながら訓練しちゃってるようなものだしね…以下のチュートリアルのコードでは、正解の単語を入れる確率 teacher_forcing_ratio が 0.5 になっているけど、本当は徐々に下げていくものなんじゃないのかな…？ 実際にはどうなんだろう…。
 </td>
 </tr>
+<tr>
+<td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/1.png"></td>
+<td style="vertical-align:top;text-align:left;">なるほど。「教師あり学習」というか、「教師がときどき代わりに回答を書き込んでくる学習」ですか。それで、以下の train が1対の文章ペアを入れてモデルを更新する関数ですね。
+</td>
+</tr>
 </table>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -14300,7 +14322,10 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0614, -0.0580,  0.16
 
 <span class="n">teacher_forcing_ratio</span> <span class="o">=</span> <span class="mf">0.5</span>
 
-<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">,</span> <span class="n">target_tensor</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">decoder</span><span class="p">,</span> <span class="n">encoder_optimizer</span><span class="p">,</span> <span class="n">decoder_optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="n">MAX_LENGTH</span><span class="p">):</span>
+<span class="c1"># 1対の文章ペアを入れてモデルを更新する関数</span>
+<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">,</span> <span class="n">target_tensor</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">decoder</span><span class="p">,</span> 
+          <span class="n">encoder_optimizer</span><span class="p">,</span> <span class="n">decoder_optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> 
+          <span class="n">max_length</span><span class="o">=</span><span class="n">MAX_LENGTH</span><span class="p">):</span>
     <span class="n">encoder_hidden</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">initHidden</span><span class="p">()</span>
 
     <span class="n">encoder_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
@@ -14357,6 +14382,19 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0614, -0.0580,  0.16
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table width="100%">
+<tr>
+<td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/1.png"></td>
+<td style="vertical-align:top;text-align:left;">以下の trainIters がたくさんの文章ペアに対して学習を回す関数ですね。ここでは n_iters を 75000 にしていますが、いま訓練対象の文章ペアは 10599 ですから、1つの文章が 7, 8 回選ばれている計算になりますね。…訓練する文章はランダムに選ばれていますが、短い文章から長い文章に向かって学習すると上手くいくなどはないのでしょうか？ 人間の幼児も2語文、3語文から覚え始めると思いますし…しかし、それでは学習の序盤に短い文章にフィットしてしまうでしょうか？？
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
@@ -14364,6 +14402,8 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0614, -0.0580,  0.16
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">math</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">switch_backend</span><span class="p">(</span><span class="s1">&#39;agg&#39;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
@@ -14420,6 +14460,8 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0614, -0.0580,  0.16
             <span class="n">print_loss_total</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> (</span><span class="si">%d</span><span class="s1"> </span><span class="si">%d%%</span><span class="s1">) </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">timeSince</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">iter</span> <span class="o">/</span> <span class="n">n_iters</span><span class="p">),</span>
                                          <span class="nb">iter</span><span class="p">,</span> <span class="nb">iter</span> <span class="o">/</span> <span class="n">n_iters</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">print_loss_avg</span><span class="p">))</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">encoder</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s1">&#39;eng-fra-encoder&#39;</span><span class="p">)</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">decoder</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s1">&#39;eng-fra-decoder&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">iter</span> <span class="o">%</span> <span class="n">plot_every</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">plot_loss_avg</span> <span class="o">=</span> <span class="n">plot_loss_total</span> <span class="o">/</span> <span class="n">plot_every</span>
@@ -14449,14 +14491,17 @@ GRUの隠れ状態：  torch.Size([1, 1, 256]) tensor([[[ 0.0614, -0.0580,  0.16
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>4m 12s (- 58m 58s) (5000 6%) 2.8085
-8m 24s (- 54m 38s) (10000 13%) 2.2788
-12m 39s (- 50m 38s) (15000 20%) 1.9874
-16m 53s (- 46m 27s) (20000 26%) 1.7201
-21m 7s (- 42m 14s) (25000 33%) 1.5495
-25m 21s (- 38m 2s) (30000 40%) 1.3986
-29m 43s (- 33m 58s) (35000 46%) 1.2565
-33m 57s (- 29m 43s) (40000 53%) 1.1197
+<pre>4m 16s (- 59m 48s) (5000 6%) 2.8253
+8m 30s (- 55m 16s) (10000 13%) 2.2619
+12m 43s (- 50m 55s) (15000 20%) 1.9318
+16m 58s (- 46m 40s) (20000 26%) 1.7043
+21m 14s (- 42m 28s) (25000 33%) 1.4787
+25m 32s (- 38m 18s) (30000 40%) 1.3270
+29m 52s (- 34m 8s) (35000 46%) 1.2006
+34m 8s (- 29m 52s) (40000 53%) 1.0684
+38m 28s (- 25m 38s) (45000 60%) 0.9749
+42m 51s (- 21m 25s) (50000 66%) 0.8662
+47m 14s (- 17m 10s) (55000 73%) 0.7999
 </pre>
 </div>
 </div>
