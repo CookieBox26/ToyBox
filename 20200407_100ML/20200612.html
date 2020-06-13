@@ -13781,13 +13781,26 @@ out.bias       torch.Size([2803])
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h4>エンコーダとデコーダ</h4>
 <img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/encoder_decoder_simple.png" width="720px"></p>
-<p><table width="100%"></p>
-<p><tr></p>
-<p><td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/2.png"></td></p>
-<p><td style="vertical-align:top;text-align:left;">仏英翻訳だから、エンコーダにはフランス語の文章を1単語ずつ入れていくことになるね。1単語入れる度にエンコーダから特徴が出力される。1つの文章を入れ終わった最終的な特徴がコンテクストベクトルだね。コンテクストが得られたら、デコーダに文頭トークンとコンテクストベクトルを入れることで1語ずつ単語を取り出す。文末トークンが出てきたらデコードは終了って感じなのかな。
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table width="100%">
+<tr>
+<td width="80px" style="vertical-align:top;"><img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/2.png"></td>
+<td style="vertical-align:top;text-align:left;">仏英翻訳だから、エンコーダにはフランス語の文章を1単語ずつ入れていくことになるね。1単語入れる度にエンコーダから特徴が出力される。1つの文章を入れ終わった最終的な特徴がコンテクストベクトルだね。コンテクストが得られたら、デコーダに文頭トークンとコンテクストベクトルを入れることで1語ずつ単語を取り出す。文末トークンが出てきたらデコードは終了って感じなのかな。
 </td>
-&lt;/tr&gt;
-&lt;/table&gt;</p>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><h4>翻訳の流れ</h4>
 <img src="https://cookiebox26.github.io/ToyBox/20200407_100ML/encoder_decoder_simple_example.png" width="720px"></p>
 
