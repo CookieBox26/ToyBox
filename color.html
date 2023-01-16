@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>color</title>
+<style type="text/css">
+<!--
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400&family=Varela+Round&display=swap'); 
+* {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+body {
+  margin: 15px;
+  background: #e8e8e8;
+  width: 640px;
+  padding: 0;
+}
+input.inputColor {
+  height: 34px;
+  max-width: 54px;
+  display: block;
+  float: left;
+}
+input.inputText, input.inputTextR {
+  height: 28px;
+  font-size: 15px;
+  width: 72px;
+  float: none;
+}
+input.inputTextR {
+  font-size: 14px;
+  text-align: right;
+  height: 22px;
+}
+div.label {
+  font-size: 14px;
+  float: left;
+  padding-top: 4px;
+  width: 16px;
+  height: 22px;
+}
+table {
+  border-collapse: collapse;
+}
+td {
+  margin: 0;
+  padding: 4px 10px;
+}
+.tab-list {
+  display: flex;
+  margin: 0;
+}
+.tab-list>div {
+  align-self: stretch;
+  cursor : default;
+  width: 100px;
+  margin: 0;
+  padding: 5px 10px;
+  background: #e8e8e8;
+}
+.tab-list>div:hover {
+  background: #f0f0f0;
+}
+.tab-list>div.active {
+  background: #ffffff;
+}
+.tab-container {
+  background: #ffffff;
+}
+.tab-container>.tab-content {
+  display: none;
+}
+.tab-container>.active {
+  display: block !important;
+}
+.tab-content {
+  padding: 15px 0;
+}
+#scale001, #scale002, #scale003, #scale004, #scale005,
+#scale011, #scale012, #scale013, #scale014, #scale015,
+#scale021, #scale022, #scale023, #scale024, #scale025 {
+  width: 68px;
+}
+-->
+</style>
+<script type="text/javascript"><!--
+const vError = "#ff0000";
+const defaults = [
+  "#a8d992", "#117da2", "#cce2e5", "#117da2", "#cce2e5",
+  "#393939", "#f7fcfd", "#7d590d", "#ede3a6", "#8a6415",
+  "#f3f0dd", "#f0f0f0", "#1f77b4", "#ff7f0e", "#2ca02c",
+  "#d62728", "#9467bd", "#8c564b",
+];
+
+let rgb0Elems = [];
+let hsl0Elems = [];
+let colorElems = [];
+let hexElems = [];
+let tabItems = [];
+let tabContents = [];
+
+let rgb = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+];
+let hsl0 = [0, 0, 0];
+
+window.addEventListener("load", startup, false);
+
+function startup() {
+  // 色0のRGB値変更に対するイベントリスナーを登録
+  for (let j = 0; j < 3; j++) {
+    rgb0Elems.push(document.querySelector("#rgb0" + String(j)));
+    rgb0Elems[j].addEventListener("input", function(ev){
+      updateRGB0ByRGBInput(ev.target.value, j);
+      updateHSL0ByRGB0();
+      setHSL0();
+      set_(0, "#" + toHex(rgb[0][0]) + toHex(rgb[0][1]) + toHex(rgb[0][2]));
+      setScale();
+    }, false);
+  }
+  // 色0のHSL値変更に対するイベントリスナーを登録
+  for (let j = 0; j < 3; j++) {
+    hsl0Elems.push(document.querySelector("#hsl0" + String(j)));
+    hsl0Elems[j].addEventListener("input", function(ev){
+      updateHSL0ByHSLInput(ev.target.value, j);
+      updateRGB0ByHSL0();
+      setRGB0();
+      set_(0, "#" + toHex(rgb[0][0]) + toHex(rgb[0][1]) + toHex(rgb[0][2]));
+      setScale();
+    }, false);
+  }
+  // 色iのカラーピッカーとHEX値変更に対するイベントリスナーを登録
+  for (let i = 0; i < defaults.length; i++) {
+    colorElems.push(document.querySelector("#color" + String(i)));
+    colorElems[i].value = defaults[i];
+    colorElems[i].addEventListener("input", function(ev){set(i, ev.target.value);}, false);
+    hexElems.push(document.querySelector("#hex" + String(i)));
+    hexElems[i].value = defaults[i];
+    hexElems[i].addEventListener("input", function(ev){set(i, ev.target.value);}, false);
+    set(i, defaults[i]);
+  }
+  tabItems = document.querySelectorAll('.tab-item');
+  tabContents = document.querySelectorAll('.tab-content');
+  for (let i = 0; i < tabItems.length; i++) {
+    tabItems[i].addEventListener('click', function(){
+      for (let j = 0; j < tabItems.length; j++) {
+        tabItems[j].classList.remove('active');
+      }
+      for (let j = 0; j < tabContents.length; j++) {
+        tabContents[j].classList.remove('active');
+      }
+      this.classList.add('active');
+      const aryTabs = Array.prototype.slice.call(tabItems);
+      const index = aryTabs.indexOf(this);
+      tabContents[index].classList.add('active');
+    });
+  }
+}
+function set(i, v) {
+  rc = set_(i, v);
+  if (rc != 0) {
+    return;
+  }
+  // 色0に関してはRGB値とHSL値も更新
+  if (i == 0) {
+    updateRGBByHexInput(i, v);
+    updateHSL0ByRGB0();
+    setRGB0();
+    setHSL0();
+    setScale();
+  } else if (i < 3) {
+    updateRGBByHexInput(i, v);
+    setMix();
+  }
+}
+function set_(i, v) {
+  // 色iのカラーピッカーとHEX値とあれば色iにひもづく要素を更新
+  if (!(/#[0-9a-f]{6}/.test(v))) {
+    document.querySelector("#hex" + String(i)).style.color = vError;
+    return 1;
+  }
+  document.querySelector("#hex" + String(i)).style.color = "#000000";
+  document.querySelector("#hex" + String(i)).value = v;
+  document.querySelector("#color" + String(i)).value = v;
+  var p = document.querySelector("#area" + String(i));
+  if (p) {
+    p.style.background = v;
+  }
+  p = document.querySelector("#span" + String(i));
+  if (p) {
+    p.style.color = v;
+  }
+  return 0;
+}
+function updateRGBByHexInput(i, v) {
+  for (let j = 0; j < 3; j++) {
+    rgb[i][j] = parseInt(v.substr(1 + 2 * j, 2), 16);
+  }
+}
+function updateHSL0ByRGB0() {
+  let [h, s, l] = RGBtoHSL(rgb[0][0], rgb[0][1], rgb[0][2]);
+  hsl0[0] = h;
+  hsl0[1] = s;
+  hsl0[2] = l;
+}
+function RGBtoHSL(r, g, b) {
+  let vMax = Math.max(r, g, b);
+  let vMin = Math.min(r, g, b);
+
+  let rFloat = parseFloat(r) / 255.0;
+  let gFloat = parseFloat(g) / 255.0;
+  let bFloat = parseFloat(b) / 255.0;
+  let vMaxFloat = parseFloat(vMax) / 255.0;
+  let vMinFloat = parseFloat(vMin) / 255.0;
+
+  let h = 0.0;
+  let s = 0.0;
+  let l = 0.5 * (vMaxFloat + vMinFloat);  // 0～1
+
+  if (vMax == vMin) {
+    h = 0.0;
+  } else {
+    let d = vMaxFloat - vMinFloat;  // 0～1
+    if (l > 0.5) {
+      s = d / (2 - vMaxFloat - vMinFloat);
+    } else {
+      s = d / (vMaxFloat + vMinFloat);
+    }
+    switch(vMax) {
+      case r: h = (gFloat - bFloat) / d + (gFloat < bFloat ? 6.0 : 0.0); break;
+      case g: h = (bFloat - rFloat) / d + 2.0; break;
+      case b: h = (rFloat - gFloat) / d + 4.0; break;
+    }
+    h /= 6.0;
+  }
+
+  s *= 100.0;
+  l *= 100.0;
+  h *= 360.0;
+  if (h < 0.0) {
+    h += 360.0;
+  }
+  return [h, s, l];
+}
+function setRGB0() {
+  for (let j = 0; j < 3; j++) {
+    document.querySelector("#rgb0" + String(j)).value = rgb[0][j];
+    document.querySelector("#rgb0" + String(j)).style.color = "#000000";
+  }
+}
+function setHSL0() {
+  for (let j = 0; j < 3; j++) {
+    document.querySelector("#hsl0" + String(j)).value = hsl0[j].toFixed(2);
+    document.querySelector("#hsl0" + String(j)).style.color = "#000000";
+  }
+}
+function toHex(x) {
+  var v = parseInt(x).toString(16);
+  if (v.length < 2) {
+    v = "0" + v;
+  }
+  return v;
+}
+function updateRGB0ByRGBInput(x, j) {
+  x = parseInt(x);
+  if (isNaN(x) || x < 0 || x > 255) {
+    document.querySelector("#rgb0" + String(j)).style.color = vError;
+    return;
+  }
+  document.querySelector("#rgb0" + String(j)).style.color = "#000000";
+  rgb[0][j] = x;
+}
+function updateHSL0ByHSLInput(x, j) {
+  x = parseFloat(x);
+  if (isNaN(x) || x < 0.0 || ((j == 0) && (x > 360.0)) || ((j != 0) && (x > 100.0))) {
+    document.querySelector("#hsl0" + String(j)).style.color = vError;
+    return;
+  }
+  document.querySelector("#hsl0" + String(j)).style.color = "#000000";
+  hsl0[j] = x;
+}
+function updateRGB0ByHSL0() {
+  let [r, g, b] = HSLtoRGB(hsl0[0], hsl0[1], hsl0[2]);
+  rgb[0][0] = Math.floor(r);
+  rgb[0][1] = Math.floor(g);
+  rgb[0][2] = Math.floor(b);
+}
+function HSLtoRGB(h_, s_, l_) {
+  let hDash = h_ / 60.0;
+  let s = s_ / 100.0;
+  let l = l_ / 100.0;
+  let c = (1.0 - Math.abs(2.0 * l - 1.0)) * s;
+  let x = c * (1.0 - Math.abs(hDash % 2 - 1.0));
+  let r, g, b;
+  switch(Math.floor(hDash)) {
+    case 0: r = c; g = x; b = 0; break;
+    case 1: r = x; g = c; b = 0; break;
+    case 2: r = 0; g = c; b = x; break;
+    case 3: r = 0; g = x; b = c; break;
+    case 4: r = x; g = 0; b = c; break;
+    default: r = c; g = 0; b = x; break;
+  }
+  let m = l - 0.5 * c;
+  return [255 * (r + m), 255 * (g + m), 255 * (b + m)];
+}
+function setMix() {
+  var r1 = rgb[1][0];
+  var g1 = rgb[1][1];
+  var b1 = rgb[1][2];
+  var rDiff = rgb[2][0] - rgb[1][0];
+  var gDiff = rgb[2][1] - rgb[1][1];
+  var bDiff = rgb[2][2] - rgb[1][2];
+  for (let k = 0; k < 7; k++) {
+    var r = Math.floor(r1 + (k + 1) * 0.125 * rDiff);
+    var g = Math.floor(g1 + (k + 1) * 0.125 * gDiff);
+    var b = Math.floor(b1 + (k + 1) * 0.125 * bDiff);
+    var v = "#" + toHex(r) + toHex(g) + toHex(b);
+    document.querySelector("#mix12" + String(k)).style.background = v;
+    document.querySelector("#mix12" + String(k)).innerHTML = v;
+    let c = (Math.max(r, g, b) < 192) ? "#ffffff" : "#000000";
+    document.querySelector("#mix12" + String(k)).style.color = c;
+  }
+}
+function setScale() {
+  let vecLDiff = [32, 16, 8, 4, 0, -4, -8, -16, -32];
+  let vecSDiff = [32, 16, 8, 4, 0, -4, -8, -16, -32];
+  let vecHDiff = [-60, -45, -30, -15, 0, 15, 30, 45, 60];
+  for (let k = 0; k < 9; k++) {
+    let l = hsl0[2] + vecLDiff[k];
+    l = (l < 0) ? 0 : l;
+    l = (l > 100) ? 100 : l;
+    let [r, g, b] = HSLtoRGB(hsl0[0], hsl0[1], l);
+    let v = "#" + toHex(r) + toHex(g) + toHex(b);
+    document.querySelector("#scale00" + String(k)).style.background = v;
+    document.querySelector("#scale00" + String(k)).innerHTML = v;
+    let c = (Math.max(r, g, b) < 192) ? "#ffffff" : "#000000";
+    document.querySelector("#scale00" + String(k)).style.color = c;
+
+    let s = hsl0[1] + vecSDiff[k];
+    s = (s < 0) ? 0 : s;
+    s = (s > 100) ? 100 : s;
+    [r, g, b] = HSLtoRGB(hsl0[0], s, hsl0[2]);
+    v = "#" + toHex(r) + toHex(g) + toHex(b);
+    document.querySelector("#scale01" + String(k)).style.background = v;
+    document.querySelector("#scale01" + String(k)).innerHTML = v;
+    c = (Math.max(r, g, b) < 192) ? "#ffffff" : "#000000";
+    document.querySelector("#scale01" + String(k)).style.color = c;
+
+    let h = hsl0[0] + vecHDiff[k];
+    h = (h < 0) ? h + 360 : h;
+    h = (h > 360) ? h - 360 : h;
+    [r, g, b] = HSLtoRGB(h, hsl0[1], hsl0[2]);
+    v = "#" + toHex(r) + toHex(g) + toHex(b);
+    document.querySelector("#scale02" + String(k)).style.background = v;
+    document.querySelector("#scale02" + String(k)).innerHTML = v;
+    c = (Math.max(r, g, b) < 192) ? "#ffffff" : "#000000";
+    document.querySelector("#scale02" + String(k)).style.color = c;
+  }
+}
+
+// --></script>
+</head>
+<body>
+
+<table>
+  <tr>
+    <td colspan="2" style="background: #f0f0f0;">
+      <center>
+        <div id="area0" style="width: 90px; height: 90px; margin: 25px 0 15px;"></div>
+      </center>
+    </td>
+    <td rowspan="3" style="vertical-align: middle; background: #f0f0f0; padding-right: 20px;">
+      <center>
+        <table style="font-size: 13px; margin: 6px 0; text-align: center;">
+          <tr><td id="scale000"></td><td id="scale010"></td><td id="scale020"></td></tr>
+          <tr><td id="scale001"></td><td id="scale011"></td><td id="scale021"></td></tr>
+          <tr><td id="scale002"></td><td id="scale012"></td><td id="scale022"></td></tr>
+          <tr><td id="scale003"></td><td id="scale013"></td><td id="scale023"></td></tr>
+          <tr><td id="scale004"></td><td id="scale014"></td><td id="scale024"></td></tr>
+          <tr><td id="scale005"></td><td id="scale015"></td><td id="scale025"></td></tr>
+          <tr><td id="scale006"></td><td id="scale016"></td><td id="scale026"></td></tr>
+          <tr><td id="scale007"></td><td id="scale017"></td><td id="scale027"></td></tr>
+          <tr><td id="scale008"></td><td id="scale018"></td><td id="scale028"></td></tr>
+        </table>
+      </center>
+    </td>
+    <td rowspan="3" width="15px" style="padding: 0;"></td>
+    <td rowspan="3" style="vertical-align: middle; background: #f0f0f0; padding: 10px">
+      <input type="color" id="color1" class="inputColor" /><!--
+      --><input type="text" id="hex1" class="inputText"/>
+      <table style="width: 100%; font-size: 13px; margin: 6px 0; text-align: center;">
+        <tr><td id="mix120"></td></tr>
+        <tr><td id="mix121"></td></tr>
+        <tr><td id="mix122"></td></tr>
+        <tr><td id="mix123"></td></tr>
+        <tr><td id="mix124"></td></tr>
+        <tr><td id="mix125"></td></tr>
+        <tr><td id="mix126"></td></tr>
+      </table>
+      <input type="color" id="color2" class="inputColor" /><!--
+      --><input type="text" id="hex2" class="inputText"/>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="background: #f0f0f0; padding: 0 25px;">
+      <input type="color" id="color0" class="inputColor" /><!--
+      --><input type="text" id="hex0" class="inputText"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: middle; background: #f0f0f0; padding: 10px 10px 15px 20px;">
+      <div class="label">R</div>
+      <input type="text" id="rgb00" class="inputTextR" style="width: 32px;"/><br/>
+      <div class="label">G</div>
+      <input type="text" id="rgb01" class="inputTextR" style="width: 32px;"/><br/>
+      <div class="label">B</div>
+      <input type="text" id="rgb02" class="inputTextR" style="width: 32px;"/>
+    </td>
+    <td style="vertical-align: middle; background: #f0f0f0; padding: 10px 15px 15px 0;">
+      <div class="label">H</div>
+      <input type="text" id="hsl00" class="inputTextR" style="width: 54px;"/><br/>
+      <div class="label">S</div>
+      <input type="text" id="hsl01" class="inputTextR" style="width: 54px;"/><br/>
+      <div class="label">L</div>
+      <input type="text" id="hsl02" class="inputTextR" style="width: 54px;"/>
+    </td>
+  </tr>
+</table>
+
+<div class="container" style="margin: 15px 0;">
+  <div class="tab-list">
+    <div class="tab-item active">Slide</div>
+    <div class="tab-item">Chart</div>
+    <!--<div class="tab-item">Button</div>-->
+  </div>
+  <div class="tab-container">
+    <div class="tab-content active">
+      <table>
+        <tr>
+          <td style="vertical-align: top;">
+            <input type="color" id="color3" class="inputColor" /><!--
+            --><input type="text" id="hex3" class="inputText"/><br/>
+            <input type="color" id="color4" class="inputColor" /><!--
+            --><input type="text" id="hex4" class="inputText"/><br/>
+            <input type="color" id="color5" class="inputColor" /><!--
+            --><input type="text" id="hex5" class="inputText"/><br/>
+            <input type="color" id="color6" class="inputColor" /><!--
+            --><input type="text" id="hex6" class="inputText"/><br/>
+            <input type="color" id="color7" class="inputColor" /><!--
+            --><input type="text" id="hex7" class="inputText"/><br/>
+            <input type="color" id="color8" class="inputColor" /><!--
+            --><input type="text" id="hex8" class="inputText"/><br/>
+            <input type="color" id="color9" class="inputColor" /><!--
+            --><input type="text" id="hex9" class="inputText"/><br/>
+            <input type="color" id="color10" class="inputColor" /><!--
+            --><input type="text" id="hex10" class="inputText"/>
+          </td>
+          <td style="display: flex;">
+            <table>
+              <tr>
+                <td id="area4" width="360px" height="40px">
+                  <span id="span3" style="font-size: 20px;">Chi-squared distribution</span>
+                </td>
+              </tr>
+              <tr>
+                <td id="area6" width="360px" height="230px" style="font-size: 15px;">
+                  <span id="span5">The chi-squared distribution is ...</span>
+                  <table style="margin: 10px 0;">
+                    <tr>
+                      <td id="area8"><span id="span7">Theorem 1-1</span></td>
+                    </tr>
+                    <tr>
+                      <td id="area10"><span id="span9">
+                        Suppose that Z is a random variable
+                        sampled from the standard normal distribution, ...
+                      </span></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="tab-content">
+      <table>
+        <tr>
+          <td style="vertical-align: top;">
+            <input type="color" id="color11" class="inputColor" /><!--
+            --><input type="text" id="hex11" class="inputText"/><br/>
+            <input type="color" id="color12" class="inputColor" /><!--
+            --><input type="text" id="hex12" class="inputText"/><br/>
+            <input type="color" id="color13" class="inputColor" /><!--
+            --><input type="text" id="hex13" class="inputText"/><br/>
+            <input type="color" id="color14" class="inputColor" /><!--
+            --><input type="text" id="hex14" class="inputText"/><br/>
+            <input type="color" id="color15" class="inputColor" /><!--
+            --><input type="text" id="hex15" class="inputText"/><br/>
+            <input type="color" id="color16" class="inputColor" /><!--
+            --><input type="text" id="hex16" class="inputText"/><br/>
+            <input type="color" id="color17" class="inputColor" /><!--
+            --><input type="text" id="hex17" class="inputText"/>
+          </td>
+          <td>
+            <div id="area11" style="width: 380px; padding: 15px 0;">
+              <div id="area12" style="width: 320px; height: 30px; margin: 5px 0;"></div>
+              <div id="area13" style="width: 240px; height: 30px; margin: 5px 0;"></div>
+              <div id="area14" style="width: 190px; height: 30px; margin: 5px 0;"></div>
+              <div id="area15" style="width: 130px; height: 30px; margin: 5px 0;"></div>
+              <div id="area16" style="width: 110px; height: 30px; margin: 5px 0;"></div>
+              <div id="area17" style="width: 60px; height: 30px; margin: 5px 0;"></div>
+            </div>
+            <div style="width: 380px; padding: 5px 0; word-break: break-all; font-size: small;">
+              Refernce: https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="tab-content">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
