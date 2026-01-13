@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qiita Markdown Snippet Copier</title>
+<style type="text/css"><!--
+html, body {
+  margin: 0;
+  height: 100%;
+}
+body {
+  font-size: 15px;
+  line-height: 18px;
+  font-family: sans-serif;
+}
+.area {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  overflow-y: scroll;
+}
+hr {
+  box-sizing: border-box;
+  width: 100%;
+  border-top: 2px solid #333;
+  margin: 6px 0;
+}
+div.link {
+  color: #1f77b4;
+  cursor: pointer;
+}
+div.link:hover {
+  color: #1f77b4;
+  text-decoration: underline;
+}
+--></style>
+<script type="text/javascript"><!--
+function appendSidebar(elm) {
+  sidebar.appendChild(elm);
+}
+function createElm(text, clipboard) {
+  let link = document.createElement('div');
+  link.classList.add('link');
+  link.innerHTML = text;
+  link.addEventListener('click', function(event) {
+    navigator.clipboard.writeText(clipboard);
+  });
+  return link;
+}
+function setupSidebar(sidebar) {
+  appendSidebar(createElm('**', '**'));
+  appendSidebar(createElm('下線', '<INS></INS>'));
+  appendSidebar(createElm('コードスパン', '`hoge`'));
+  appendSidebar(document.createElement('hr'));
+  appendSidebar(createElm('ディレクトリ構造', `
+\`\`\`
+~/
+└─ tools/
+    ├─ lib/
+    │    ├─ __init__.py
+    │    └─ scheduler.py
+    └─ bin/
+         └─ run_scheduled_tasks.py
+\`\`\`
+`));
+  appendSidebar(document.createElement('hr'));
+  appendSidebar(createElm('桃色の文字', '<font color="palevioletred"></font>'));
+  appendSidebar(createElm('赤色の文字', '<font color="crimson"></font>'));
+  appendSidebar(createElm('灰色の文字', '<font color="darkgray"></font>'));
+  appendSidebar(document.createElement('hr'));
+  appendSidebar(createElm('緑色のブロック', ':::note\n:::'));
+  appendSidebar(createElm('黄色のブロック', ':::note warn\n:::'));
+  appendSidebar(createElm('赤色のブロック', ':::note alert\n:::'));
+  appendSidebar(document.createElement('hr'));
+  appendSidebar(createElm('コードブロック', '```\n```'));
+  appendSidebar(createElm('コードブロック (bash)', '```bash:\n```'));
+  appendSidebar(createElm('コードブロック (py)', '```py:\n```'));
+  appendSidebar(createElm('コードブロック (sql)', '```sql:\n```'));
+  appendSidebar(createElm('コードブロック (bat)', '```bat:\n```'));
+  appendSidebar(createElm('コードブロック (powershell)', '```powershell:\n```'));
+  appendSidebar(createElm('コードブロック (tex)', '```tex:\n```'));
+  appendSidebar(createElm('コードブロック (css)', '```css:\n```'));
+  appendSidebar(document.createElement('hr'));
+  appendSidebar(createElm('脚注1 (参照側)', '[^1]'));
+  appendSidebar(createElm('脚注1 (内容側)', '[^1]: '));
+  appendSidebar(createElm('脚注2 (参照側)', '[^2]'));
+  appendSidebar(createElm('脚注2 (内容側)', '[^2]: '));
+  appendSidebar(createElm('脚注3 (参照側)', '[^3]'));
+  appendSidebar(createElm('脚注3 (内容側)', '[^3]: '));
+  appendSidebar(createElm('脚注4 (参照側)', '[^4]'));
+  appendSidebar(createElm('脚注4 (内容側)', '[^4]: '));
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.getElementById('sidebar');
+  setupSidebar(sidebar);
+});
+// --></script>
+</head>
+<body>
+<div class="area" id="sidebar"></div>
+</body>
+</html>
