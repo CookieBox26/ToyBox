@@ -54,13 +54,13 @@ function setupSidebar(sidebar) {
   appendSidebar(createElm('下線', '<INS></INS>'));
   appendSidebar(createElm('コードスパン', '`hoge`'));
   appendSidebar(document.createElement('hr'));
-  appendSidebar(createElm('ディレクトリ構造', `
-\`\`\`
+  appendSidebar(createElm('ディレクトリ構成', `
+\`\`\`sh:ディレクトリ構成
 ~/
 └─ tools/
     ├─ lib/
     │    ├─ __init__.py
-    │    └─ scheduler.py
+    │    └─ scheduled_task.py
     └─ bin/
          └─ run_scheduled_tasks.py
 \`\`\`
