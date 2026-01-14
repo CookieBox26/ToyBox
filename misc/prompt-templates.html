@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt templates</title>
+<style type="text/css"><!--
+html, body {
+  margin: 0;
+  height: 100%;
+}
+body {
+  font-size: 15px;
+  line-height: 18px;
+  font-family: sans-serif;
+  color: #333;
+  background: #333;
+}
+.container {
+  box-sizing: border-box;
+  display: flex;
+}
+.area {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  padding: 8px;
+  overflow-y: scroll;
+}
+div#main {
+  width: 100%;
+  height: 100%;
+  gap: 2px;
+}
+div#left {
+  width: 200px;
+  height: 100%;
+  flex-flow: column;
+}
+div#right {
+  width: calc(100% - 202px);
+  height: 100%;
+  flex-flow: column;
+}
+hr {
+  box-sizing: border-box;
+  width: 100%;
+  border-top: 2px solid #333;
+  margin: 6px 0;
+}
+textarea#note {
+  background: #f0f0f0;
+  border: 0;
+  outline: 0;
+  resize: none;
+  display: block;
+  line-height: inherit;
+  font-size: 14px;
+  line-height: 17px;
+}
+div.link {
+  color: #1f77b4;
+  cursor: pointer;
+}
+div.link:hover {
+  color: #1f77b4;
+  text-decoration: underline;
+}
+--></style>
+<script type="text/javascript"><!--
+function storageKeyCurrentNote() {
+  return `prompt-template-${App.currentPromptId}`;
+}
+function createCopyButton() {
+  let link = document.createElement('div');
+  link.classList.add('link');
+  link.innerHTML = 'Copy to clipboard';
+  link.addEventListener('click', function(event) {
+    const note = document.getElementById('note');
+    navigator.clipboard.writeText(note.value);
+  });
+  return link;
+}
+function createSwitchButton(promptId) {
+  let link = document.createElement('div');
+  link.classList.add('link');
+  link.innerHTML = `Prompt ${promptId}`;
+  link.addEventListener('click', function(event) {
+    App.currentPromptId = promptId;
+    localStorage.setItem('currentPromptId', promptId);
+    loadNote();
+  });
+  return link;
+}
+function setupSidebar(sidebar) {
+  sidebar.appendChild(createCopyButton());
+  sidebar.appendChild(document.createElement('hr'));
+  for (let promptId = 1; promptId <= App.nPrompt; promptId++) {
+    sidebar.appendChild(createSwitchButton(promptId));
+  }
+}
+function setupNote() {
+  const note = document.getElementById('note');
+  function saveNoteToLocalStorage() {
+    const storageKey = storageKeyCurrentNote();
+    localStorage.setItem(storageKey, note.value);
+  }
+  note.addEventListener('input', saveNoteToLocalStorage);
+}
+function loadNote() {
+  const note = document.getElementById('note');
+  const storageKey = storageKeyCurrentNote();
+  const value = localStorage.getItem(storageKey);
+  if (value !== null && value !== '') {
+    note.value = value;
+    return;
+  }
+  switch (App.currentPromptId) {
+    case 1:
+      note.value = '# プロンプトテンプレートツール\n';
+      note.value += '\n## このツールの説明\n';
+      note.value += '\n- このテキストエリア (編集できます) によく使うプロンプトを書いてください。';
+      note.value += '\n  - Prompt 2, Prompt 3 の例を参照ください。';
+      note.value += '\n  - このテキストエリアの内容が編集されるとお手元のブラウザのローカルストレージに保存されます。';
+      note.value += '\n  - この Prompt 1 にある説明欄も読み終えたら編集いただければ 3 種類のプロンプトが保存できます。';
+      note.value += '\n- AI への質問時には、プロンプトの下部にコード片や記事片を貼り付ければ、';
+      note.value += '\n  Copy to clipboard ボタンでプロンプトごとコピーできます。';
+      note.value += '\n- このテキストエリアの文字を全消去してリロードすると、デフォルトプロンプトに戻ります。';
+      note.value += '\n\n## 注意点\n';
+      note.value += '\nブラウザによっては、日数が経過するとローカルストレージがクリアされる場合があります。';
+      note.value += '\nなくなったら困る文章は別の場所に大切に保存してください。';
+      return;
+    case 2:
+      note.value = '以下のソースコードをレビューしてください。';
+      note.value += '\n全体を書き換えるのではなく、改善すべき点を理由とともに個別に指摘してください。';
+      note.value += '\n\n```\n\n```';
+      return;
+    case 3:
+      note.value = '以下の文章 (技術サイトに投稿予定の記事) をレビューしてください。';
+      note.value += '\n全体を書き換えるのではなく、誤りやよりわかりやすい表現があれば理由とともに個別に指摘してください。';
+      note.value += '\nあわせて、記事のタイトル案とタグ案も提案してください。';
+      note.value += '\n\n---\n\n';
+      return;
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  window.App = window.App || {};
+  App.nPrompt = 3;
+  const v = localStorage.getItem('currentPromptId');
+  App.currentPromptId = v === null ? 1 : Number(v);
+  const sidebar = document.getElementById('sidebar');
+  setupSidebar(sidebar);
+  setupNote();
+  loadNote();
+});
+// --></script>
+</head>
+<body>
+<div class="container" id="main">
+  <div class="container" id="left">
+    <div class="area" id="sidebar"></div>
+  </div>
+  <div class="container" id="right">
+    <textarea class="area" id="note" spellcheck="false"></textarea>
+  </div>
+</div>
+</body>
+</html>
