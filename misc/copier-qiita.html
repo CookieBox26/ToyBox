@@ -51,6 +51,7 @@ function createElm(text, clipboard) {
 }
 function setupSidebar(sidebar) {
   appendSidebar(createElm('**', '**'));
+  appendSidebar(createElm('b タグ', '<b></b>'));
   appendSidebar(createElm('下線', '<INS></INS>'));
   appendSidebar(createElm('コードスパン', '`hoge`'));
   appendSidebar(document.createElement('hr'));
@@ -66,9 +67,11 @@ function setupSidebar(sidebar) {
 \`\`\`
 `));
   appendSidebar(document.createElement('hr'));
-  appendSidebar(createElm('桃色の文字', '<font color="palevioletred"></font>'));
-  appendSidebar(createElm('赤色の文字', '<font color="crimson"></font>'));
-  appendSidebar(createElm('灰色の文字', '<font color="darkgray"></font>'));
+  appendSidebar(createElm('文字色 palevioletred', '<font color="palevioletred"></font>'));
+  appendSidebar(createElm('文字色 crimson', '<font color="crimson"></font>'));
+  appendSidebar(createElm('文字色 darkgray', '<font color="darkgray"></font>'));
+  appendSidebar(createElm('文字色 steelblue', '<font color="steelblue"></font>'));
+  appendSidebar(createElm('文字色 peru', '<font color="peru"></font>'));
   appendSidebar(document.createElement('hr'));
   appendSidebar(createElm('緑色のブロック', ':::note\n:::'));
   appendSidebar(createElm('黄色のブロック', ':::note warn\n:::'));
